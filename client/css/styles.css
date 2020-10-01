@@ -1,0 +1,63 @@
+header {
+    display: flex;
+    background-image: url("../images/header.jpg");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 150px;
+    background-size: cover;
+     align-items: flex-end;
+ 
+}
+
+.nav-link {
+    color: white;
+}
+
+.divGrupo {
+    text-align: center;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    color: thistle;
+}
+
+.divInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.listUl {
+    list-style: none;
+}
+
+.social {
+	top: 200px; /* Bajamos la barra 200px de arriba a abajo */
+}
+
+.social ul {
+	list-style: none;
+}
+
+.social ul li a {
+	display: inline-block;
+	color:#fff;
+	background: #000;
+	padding: 10px 15px;
+	text-decoration: none;
+	-webkit-transition:all 500ms ease;
+	-o-transition:all 500ms ease;
+	transition:all 500ms ease; /* Establecemos una transición a todas las propiedades */
+}
+
+.social ul li .icon-facebook {background:#3b5998;} /* Establecemos los colores de cada red social, aprovechando su class */
+.social ul li .icon-twitter {background: #00ABF0;}
+.social ul li .icon-instagram {background: #D95232;}
+.social ul li .icon-youtube {background: #AE181F;}
+.social ul li a:hover {
+	background: #000; /* Cambiamos el fondo cuando el usuario pase el mouse */
+	padding: 10px 30px; /* Hacemos mas grande el espacio cuando el usuario pase el mouse */
+}
