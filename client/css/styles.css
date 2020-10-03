@@ -34,15 +34,15 @@ footer {
     list-style: none;
 }
 
-.social {
+.divSocial {
 	top: 200px; /* Bajamos la barra 200px de arriba a abajo */
 }
 
-.social ul {
+.divSocial ul {
 	list-style: none;
 }
 
-.social ul li a {
+.divSocial ul li a {
 	display: inline-block;
 	color:#fff;
 	background: #000;
@@ -53,11 +53,11 @@ footer {
 	transition:all 500ms ease; /* Establecemos una transición a todas las propiedades */
 }
 
-.social ul li .icon-facebook {background:#3b5998;} /* Establecemos los colores de cada red social, aprovechando su class */
-.social ul li .icon-twitter {background: #00ABF0;}
-.social ul li .icon-instagram {background: #D95232;}
-.social ul li .icon-youtube {background: #AE181F;}
-.social ul li a:hover {
+.divSocial ul li .icon-facebook {background:#3b5998;} /* Establecemos los colores de cada red social, aprovechando su class */
+.divSocial ul li .icon-twitter {background: #00ABF0;}
+.divSocial ul li .icon-instagram {background: #D95232;}
+.divSocial ul li .icon-youtube {background: #AE181F;}
+.divSocial ul li a:hover {
 	background: #000; /* Cambiamos el fondo cuando el usuario pase el mouse */
 	padding: 10px 30px; /* Hacemos mas grande el espacio cuando el usuario pase el mouse */
 }
