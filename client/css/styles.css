@@ -115,3 +115,8 @@ footer {
     text-align: justify;
     padding-left: 20px;
 }
+
+/* Formulario Login */
+.formularioLogin{
+    margin: auto;
+}
