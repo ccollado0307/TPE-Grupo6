@@ -94,6 +94,10 @@ footer {
 
 .divContactos ul li img {
     border-radius: 5px;
+}
+
+.divContactos ul li  {
+    border-radius: 5px;
     margin-top: 10px;
 }
 
