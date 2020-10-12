@@ -3,7 +3,9 @@ header {
     background-repeat: no-repeat;
     width: 100%;
     height: 150px;
-    background-size: cover;
+    background-size: contain; /* cambie por cover */
+    background-color: #000033; /* agregue */
+    background-position: center; /* agregue */
 }
 
 .divArticle {
@@ -17,6 +19,7 @@ header {
 
 .nav {
     padding-top: 115px;
+    margin-left: 25px;
 }
 
 .nav-link {
@@ -79,9 +82,33 @@ footer {
 
 .divSocial ul li .icon-facebook {background:#3b5998;} /* Establecemos los colores de cada red social, aprovechando su class */
 .divSocial ul li .icon-twitter {background: #00ABF0;}
-.divSocial ul li .icon-instagram {background: #D95232;}
+.divSocial ul li .icon-instagram {background: #833AB4;}
 .divSocial ul li .icon-youtube {background: #AE181F;}
 .divSocial ul li a:hover {
 	background: #000; /* Cambiamos el fondo cuando el usuario pase el mouse */
 	padding: 10px 30px; /* Hacemos mas grande el espacio cuando el usuario pase el mouse */
+}
+
+.divContactos ul li img {
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Institucional */
+.container {
+    padding-top: 10px;
+}
+.claseH4 {
+    font-style: oblique;
+}
+
+#idBienvenida {
+    text-align: justify;
+    padding-left: 20px;
+    font-size: xx-large;
+    text-align: center;
+}
+.clasePContainer {
+    text-align: justify;
+    padding-left: 20px;
 }
