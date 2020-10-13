@@ -4,7 +4,7 @@ header {
     background-repeat: no-repeat;
     width: 100%;
     height: 150px;
-    background-size: 100%; 
+    background-size: 100% 100%; 
     background-position: center; 
 }
 
@@ -15,7 +15,7 @@ header {
     background-repeat: no-repeat;
     width: 100%;
     min-height: 500px;
-    background-size: cover;  
+    background-size: 100% 100%; 
 }
 
 /* nav escritorio */
@@ -101,7 +101,7 @@ footer {
     margin-top: 10px;
 }
 
-/* Institucional */
+/* Formulario Institucional */
 .container {
     padding-top: 10px;
 }
