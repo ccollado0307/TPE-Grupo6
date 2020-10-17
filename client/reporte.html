@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <title>Institucional</title>
+    <title>Parte de Novedades</title>
 </head>
 
 <body>
@@ -29,53 +29,86 @@
                 <a class="nav-link" href="login.html">Login</a>
             </li>
         </ul>
-
     </header>
     <!--End header-->
 
     <!--Init article-->
     <article class="divArticle">
-        
-        <form class="formularioLogin">
-            <h2>Para uso de Personal Autorizado</h2>
-            <div class="form-group">
-                <label for="exampleDropdownFormEmail2">Usuario</label>
-                <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
-            </div>
-            <div class="form-group">
-                <label for="exampleDropdownFormPassword2">Contraseña</label>
-                <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                    <label class="form-check-label" for="dropdownCheck2">
-                        Remember me
-                    </label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Ingresar</button>
+        <form class="formParteNov">
+            <h4> PARTE DE NOVEDADES DEL ESC COM BL 1 - <input class="inputCalendario" type="date" id="start"
+                    name="trip-start" value="" min="2020-01-01" max="2023-12-31"></h4>
+
+            <table class="tableParteNov">
+                <thead>
+                    <tr>
+                        <th>Numero</th>
+                        <th>Grado</th>
+                        <th>Apellido y Nombre</th>
+                        <th>Presente</th>
+                        <th>Ausente</th>
+                        <th>Causa</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>1</td>
+                    <td>MY</td>
+                    <td>Aued Braian</td>
+                    <td><input type="checkbox" name="asistencia" value="presente"></td>
+                    <td><input type="checkbox" name="asistencia" value="ausente"></td>
+                    <td>
+                        <select>
+                            <option value="autorizado">Autorizado</option>
+                            <option value="gusal">Guardia Saliente</option>
+                            <option value="gue">Guardia Entrante</option>
+                            <option value="fei">Fuerza Empleo Inmediato</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>CT</td>
+                    <td>Mendoza Viviana</td>
+                    <td><input type="checkbox" name="asistencia" value="presente"></td>
+                    <td><input type="checkbox" name="asistencia" value="ausente"></td>
+                    <td>
+                        <select>
+                            <option value="autorizado">Autorizado</option>
+                            <option value="gusal">Guardia Saliente</option>
+                            <option value="gue">Guardia Entrante</option>
+                            <option value="fei">Fuerza Empleo Inmediato</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>CT</td>
+                    <td>Collado Cecilia</td>
+                    <td><input type="checkbox" name="asistencia" value="presente"></td>
+                    <td><input type="checkbox" name="asistencia" value="ausente"></td>
+                    <td>
+                        <select>
+                            <option value="autorizado">Autorizado</option>
+                            <option value="gusal">Guardia Saliente</option>
+                            <option value="gue">Guardia Entrante</option>
+                            <option value="fei">Fuerza Empleo Inmediato</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            
+            <button type="submit" class="btn btn-primary btn-enviar">Enviar</button>
         </form>
-    
-
-
-
-
-
-
-
-
     </article>
     <!--End article-->
 
     <!--Init footer-->
     <footer>
         <div class="divInfo">
-            
+
             <div class="divContactos">
                 <ul class="listUl">
                     <li><img src="images/location.jpg" class="iconosInfo">Figueroa y Pujol S/N - Tandil - CP: 7000</li>
-                    
+
                     <li><img src="images/TE.jpg" class="iconosInfo">+54 9 11 4346-6100 Int 343</li>
                     <li><img src="images/email.jpg" class="iconosInfo">esccombl1@ejercito.mil.ar</li>
                 </ul>
@@ -84,9 +117,11 @@
             <div class="divSocial">
                 <h5>Redes Sociales del Área</h5>
                 <ul>
-                    <li><a href="https://www.facebook.com/EjercitoArgentinoPaginaOficial" target="_blank" class="icon-facebook"></a></li>
+                    <li><a href="https://www.facebook.com/EjercitoArgentinoPaginaOficial" target="_blank"
+                            class="icon-facebook"></a></li>
                     <li><a href="https://twitter.com/Ejercito_Arg" target="_blank" class="icon-twitter"></a></li>
-                    <li><a href="https://www.instagram.com/ejercitoarg/" target="_blank" class="icon-instagram"></a></li>
+                    <li><a href="https://www.instagram.com/ejercitoarg/" target="_blank" class="icon-instagram"></a>
+                    </li>
                     <li><a href="https://www.youtube.com/user/cominstea" target="_blank" class="icon-youtube"></a></li>
                 </ul>
             </div>
