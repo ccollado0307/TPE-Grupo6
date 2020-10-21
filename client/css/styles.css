@@ -83,10 +83,22 @@ footer {
 	transition:all 500ms ease; /* Establecemos una transición a todas las propiedades */
 }
 
-.divSocial ul li .icon-facebook {background:#3b5998;} /* Establecemos los colores de cada red social, aprovechando su class */
-.divSocial ul li .icon-twitter {background: #00ABF0;}
-.divSocial ul li .icon-instagram {background: #833AB4;}
-.divSocial ul li .icon-youtube {background: #AE181F;}
+.divSocial ul li .icon-facebook {
+    background:#3b5998;
+} /* Establecemos los colores de cada red social, aprovechando su class */
+
+.divSocial ul li .icon-twitter {
+    background: #00ABF0;
+}
+
+.divSocial ul li .icon-instagram {
+    background: #833AB4;
+}
+
+.divSocial ul li .icon-youtube {
+    background: #AE181F;
+}
+
 .divSocial ul li a:hover {
 	background: #000; /* Cambiamos el fondo cuando el usuario pase el mouse */
 	padding: 10px 30px; /* Hacemos mas grande el espacio cuando el usuario pase el mouse */
@@ -99,6 +111,7 @@ footer {
 .divContactos ul li  {
     border-radius: 5px;
     margin-top: 10px;
+    align-items: center;
 }
 
 /* Formulario Institucional */
@@ -196,4 +209,137 @@ td, th{
 .btn-enviar {
     margin-left: 88%;
     margin-top: 15px;
+}
+
+.social{
+    display: none;
+}
+
+/*****************************Cambios para version mobile**********************************/
+
+@media only screen and (max-width:600px){
+
+/********** Cambios en Footer **********/
+
+/*Oculta div de redes sociales y el iframe de ubicacion*/
+.divSocial{
+    display: none;
+}
+
+
+.divUbicacion{
+    display: none;
+}
+
+/*Acomoda todo el contenido del footer */
+.divInfo {
+    font-size: medium;
+    justify-content: flex-start;
+    text-align: start;
+}
+
+footer{
+    margin-left:0px;
+    width: fit-content;
+}
+
+/*** Lista de redes sociales mobile */
+
+.social {
+    position: fixed; /* Hacemos que la posición en pantalla sea fija para que siempre se muestre en pantalla*/
+    display: flex;
+    margin:auto;
+    margin-left: 0px;
+    padding-left: 0px;
+    border: 0px;
+}
+ 
+.social ul {
+    list-style: none;
+    padding-left: 0px;
+}
+ 
+.social ul li a {
+    display: inline-block;
+    color:#fff;
+    background: #000;
+    padding: 15px 20px;
+    text-decoration: none;
+    -webkit-transition:all 500ms ease;
+    -o-transition:all 500ms ease;
+    transition:all 500ms ease; /* Establecemos una transición a todas las propiedades */
+    }
+ 
+  
+.social ul li .icon-facebook {
+    background:#3b5998;
+} /* Establecemos los colores de cada red social, aprovechando su ass */
+
+.social ul li .icon-twitter {
+    background: #00abf0;
+}
+.social ul li .icon-instagram {
+    background: #D95232;
+}
+
+.social ul li .icon-youtube {
+    background: #AE181F;
+}
+
+.social ul li a:hover {
+    background: #000; /* Cambiamos el fondo cuando el usuario pase el mouse */
+    padding: 10px 30px; /* Hacemos mas grande el espacio cuando el usuario pase el mouse */
+}
+
+/* Cambia posicion de la galeria a colum */
+.divFotos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 0px;
+    margin-left: 13px; /*para que no toque la barra de navegacion*/
+}
+
+.conteiner {
+    display: flex;
+    flex-direction: column;
+    height: 33%;
+    width: 75%;
+}
+
+/* Cambios en login */
+.formularioLogin {
+    height: 80%;
+    width: 80%;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: 4%;
+    margin-bottom: auto;
+}
+
+/* Cambios en header */
+header {
+    background-image: url("../images/mobileheader.jpg");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: auto;
+    background-size: 105% 105%; 
+    /*background-position: center; */
+    object-fit: cover;
+    object-position: center center;
+}
+
+.nav {
+    justify-content: center;
+    padding-top: 115px;
+    font-size: small;
+}
+
+.h2Login{
+    text-align: center;
+}
+
 }
