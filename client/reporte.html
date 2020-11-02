@@ -25,8 +25,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="galeria.html">Galeria de Imágenes</a>
             </li>
+  
             <li class="nav-item">
-                <a class="nav-link" href="login.html">Login</a>
+                <a class="nav-link" href="login.html">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reporte.html">Reporte</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="consultas.html">Consultas</a>
             </li>
         </ul>
     </header>
@@ -35,69 +42,31 @@
     <!--Init article-->
     <article class="divArticle">
         <form class="formParteNov">
-            <h4> PARTE DE NOVEDADES DEL ESC COM BL 1 - <input class="inputCalendario" type="date" id="start"
-                    name="trip-start" value="" min="2020-01-01" max="2023-12-31"></h4>
+            <h4> PARTE DE NOVEDADES DEL ESC COM BL 1 - <input class="inputCalendario" type="date" id="start" name="trip-start" value="" min="2020-01-01" max="2023-12-31"></h4>
 
             <table class="tableParteNov">
                 <thead>
                     <tr>
                         <th>Numero</th>
                         <th>Grado</th>
-                        <th>Apellido y Nombre</th>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
                         <th>Presente</th>
                         <th>Ausente</th>
                         <th>Causa</th>
                     </tr>
                 </thead>
-                <tr>
-                    <td>1</td>
-                    <td>MY</td>
-                    <td>Aued Braian</td>
-                    <td><input type="checkbox" name="asistencia" value="presente"></td>
-                    <td><input type="checkbox" name="asistencia" value="ausente"></td>
-                    <td>
-                        <select>
-                            <option value="autorizado">Autorizado</option>
-                            <option value="gusal">Guardia Saliente</option>
-                            <option value="gue">Guardia Entrante</option>
-                            <option value="fei">Fuerza Empleo Inmediato</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>CT</td>
-                    <td>Mendoza Viviana</td>
-                    <td><input type="checkbox" name="asistencia" value="presente"></td>
-                    <td><input type="checkbox" name="asistencia" value="ausente"></td>
-                    <td>
-                        <select>
-                            <option value="autorizado">Autorizado</option>
-                            <option value="gusal">Guardia Saliente</option>
-                            <option value="gue">Guardia Entrante</option>
-                            <option value="fei">Fuerza Empleo Inmediato</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>CT</td>
-                    <td>Collado Cecilia</td>
-                    <td><input type="checkbox" name="asistencia" value="presente"></td>
-                    <td><input type="checkbox" name="asistencia" value="ausente"></td>
-                    <td>
-                        <select>
-                            <option value="autorizado">Autorizado</option>
-                            <option value="gusal">Guardia Saliente</option>
-                            <option value="gue">Guardia Entrante</option>
-                            <option value="fei">Fuerza Empleo Inmediato</option>
-                        </select>
-                    </td>
-                </tr>
+
+                    <tbody id="tblPersonal">
+
+                </tbody>
             </table>
-            
-            <button type="submit" class="btn btn-primary btn-enviar">Enviar</button>
+            <div id="use-ajax"></div>
+            <button type="submit" class="btn btn-primary btn-enviar" id="agregarAsistencia">Enviar</button>
+            <p id="respAsistencia"></p>
         </form>
+      
+    
     </article>
     <!--End article-->
 
@@ -142,10 +111,10 @@
     </footer>
     <!--End footer-->
 
-
-
-
     <!-- Optional JavaScript -->
+        
+    <script src="js/reporte.js"></script>
+    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
