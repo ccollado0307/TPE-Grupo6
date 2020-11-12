@@ -39,6 +39,8 @@ loadList();
 let btn_consulta = document.querySelector("#btn_consulta");
 btn_consulta.addEventListener("click", tipoConsulta);
 
+let formConsultas = document.querySelector(".formArticleConsultas");
+
 let listadoDeConsulta = [];
 
 function tipoConsulta() {
@@ -61,8 +63,9 @@ function tipoConsulta() {
             break;
         case 4: loadAllInformation(4);
             break;
+        case 5: loadAllInformation(5);
         default:
-            loadAllInformation(5);
+            alert('Seleccione una Consulta');
     }
 }
 
@@ -85,8 +88,15 @@ async function loadAllInformation(nroConsulta) {
 
     if (response.ok) {
         let t = await response.json();
-        listadoDeConsulta = t; //windows href ... a otro html
-        cargarConsulta()
+        listadoDeConsulta = t;
+
+        console.log('resultado consulta ', listadoDeConsulta);
+        if (listadoDeConsulta.length != 0) {
+            formConsultas.classList.toggle("hide");
+            cargarConsulta()
+        }
+        else
+            alert('NO HAY CONSULTAS PARA MOSTRAR');
     } else {
         //buscar una respuesta en el html
         console.log("fallo el post");
@@ -94,7 +104,20 @@ async function loadAllInformation(nroConsulta) {
 }
 
 function cargarConsulta() {
-    let html = "";
+    let html = `<table class="tableConsulta">
+    <thead>
+        <tr>
+            <th class="th">Fecha</th>
+            <th class="th">Numero</th>
+            <th class="th">Grado</th>
+            <th class="th">Apellido</th>
+            <th class="th">Nombre</th>
+            <th class="th">Presente/Ausente</th>
+            <th class="th">Causa</th>
+        </tr>
+    </thead>
+        <tbody id="tblConsulta"></tbody>`
+        ;
 
     if (listadoDeConsulta.length != 0) {
         for (let i = 0; i < listadoDeConsulta.length; i++) {
@@ -110,9 +133,17 @@ function cargarConsulta() {
                     </tr>
                     `;
         }
-        document.querySelector("#tblConsulta").innerHTML = html;
-    }
-    else
-        alert('NO HAY CONSULTAS PARA MOSTRAR');
+        html += `
+        </table>
+        <button type="submit" class="btn btn-primary btn-mostrar-consultas" id="volver">Volver</button>`;
 
+        formConsultas.classList.toggle("hide");
+        formConsultas.innerHTML = html;
+        let botonVolver = document.getElementById("volver");
+        botonVolver.addEventListener("click", volver);
+    }
+}
+
+function volver() {
+    window.location.href = './consultas.html';
 }

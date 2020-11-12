@@ -107,8 +107,4 @@ export class ConsultasService {
         }
         return this.listadoConsulta;
     }
-
-    private loadAllInformationQuery5(fecha: string): PersonalAsistencia[] {
-        return this.listadoConsulta;
-    }
 } 
