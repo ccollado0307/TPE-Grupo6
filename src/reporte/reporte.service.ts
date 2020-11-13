@@ -37,11 +37,21 @@ export class ReporteService {
             let asistencia = asist[i].asistencia;
             let causa = asist[i].causa;
             const personalAct = new PersonalActivo(parseInt(oficial.numero), oficial.grado, oficial.nombre, oficial.apellido);
-            fs.appendFileSync('registroAsistencia.csv', `${dia},${personalAct.getNumero()},${personalAct.getGrado()},${personalAct.getApellido()},${personalAct.getNombre()},${asistencia},${causa}\n`);
+            fs.appendFileSync('registroAsistencia.csv', `\n${dia},${personalAct.getNumero()},${personalAct.getGrado()},${personalAct.getApellido()},${personalAct.getNombre()},${asistencia},${causa}`);
         }
 
         return "Asistencia cargada correctamente";
     }
 
-//Actualizando repositorio
+    public registrarPersona(persona: any): string {
+
+            let oficial:PersonalActivo = new PersonalActivo(parseInt(persona.numero), persona.grado, persona.nombre, persona.apellido);
+            fs.appendFileSync('personal.csv', `\n${oficial.getNumero()},${oficial.getGrado()},${oficial.getApellido()},${oficial.getNombre()}`);
+
+
+            return "Asistencia cargada correctamente";
+
+        }
+
 }
+//Actualizando repositorio

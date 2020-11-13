@@ -1,5 +1,3 @@
-
-
 export interface metodosPersona{
     getNombre():String;
     getApellido():String;
