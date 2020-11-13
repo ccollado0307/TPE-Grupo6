@@ -43,5 +43,14 @@ export class ReporteService {
         return "Asistencia cargada correctamente";
     }
 
-//Actualizando repositorio
+    public registrarPersona(persona: any): string {
+
+        let oficial: PersonalActivo = new PersonalActivo(parseInt(persona.numero), persona.grado, persona.nombre, persona.apellido);
+        fs.appendFileSync('personal.csv', `\n${oficial.getNumero()},${oficial.getGrado()},${oficial.getApellido()},${oficial.getNombre()}`);
+
+
+        return "Asistencia cargada correctamente";
+
+    }
+    //Actualizando repositorio
 }
