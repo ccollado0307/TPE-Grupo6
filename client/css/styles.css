@@ -215,6 +215,18 @@ td, th{
     display: none;
 }
 
+#addPersonal{
+    width: 100%;
+    flex-direction: row;
+    padding: 2px;
+    
+    align-items: center;
+    justify-content: space-between;
+}
+
+#addNumero{
+    width: 10%;
+}
 /*****************************Cambios para version mobile**********************************/
 
 @media only screen and (max-width:600px){

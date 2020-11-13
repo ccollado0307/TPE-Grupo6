@@ -49,6 +49,9 @@ function mostrarTablaPersonal() {
     }
 
     document.querySelector("#tblPersonal").innerHTML = html;
+
+    let btnAgregar = document.querySelector("#agregarPersonal");
+    btnAgregar.addEventListener("click", agregarPersonal);
 }
 
 
@@ -112,5 +115,36 @@ async function agregarAsistencia() {
 }
 
 
-loadList();
+async function agregarPersonal() {
 
+        let numero=document.querySelector('#addNumero').value;
+        let grado=document.querySelector('#addGrado').value;
+        let apellido=document.querySelector('#addApellido').value;
+        let nombre=document.querySelector('#addNombre').value;
+
+    
+        let addPers = {
+            "numero": numero,
+            "grado": grado,
+            "apellido": apellido,
+            "nombre": nombre,
+            }
+        
+        let resp = await fetch('./reporte/1', {
+                "method": "POST",
+                "headers": { "Content-Type": "application/json" },
+                "body": JSON.stringify(addPers)
+            })
+            if (resp.ok) {
+                let container = document.querySelector("#use-ajax");
+                container.innerHTML = "El Personal se ha registrado correctamente";
+            } else {
+                //buscar una respuesta en el html
+                console.log("fallo el post");
+        
+            }    
+}
+
+ 
+
+loadList();
