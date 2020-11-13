@@ -19,6 +19,11 @@ export class ReporteController {
        return this.reporteService.registrarAsistencia(asist);
     }
 
+    @Post(':index')
+    addPersonal(@Body() persona: any): string {
+        return this.reporteService.registrarPersona(persona);
+     }
+
 }
 
 
