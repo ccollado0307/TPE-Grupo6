@@ -1,4 +1,4 @@
-// Load Consultas indico el personal 
+// Load Consultas --> Carga lista de personal activo
 let listadoDePersonal = [];
 
 async function loadList() {
@@ -26,7 +26,6 @@ function cargarPersonal() {
             ${listadoDePersonal[i].grado}  
             ${listadoDePersonal[i].nombre}   
             ${listadoDePersonal[i].apellido}  
-            
            `;
     }
 
@@ -45,15 +44,12 @@ let listadoDeConsulta = [];
 
 function tipoConsulta() {
     let manyCheckBox = document.querySelectorAll(".form-check-input");
-
     let nroConsulta = 0;
-
     for (let i = 0; i < manyCheckBox.length; i++) {
         if (manyCheckBox[i].checked) {
             nroConsulta += i + 1;
         }
     }
-
     switch (nroConsulta) {
         case 1: loadAllInformation(1);
             break;
@@ -64,6 +60,7 @@ function tipoConsulta() {
         case 4: loadAllInformation(4);
             break;
         case 5: loadAllInformation(5);
+            break;
         default:
             alert('Seleccione una Consulta');
     }
@@ -72,25 +69,20 @@ function tipoConsulta() {
 async function loadAllInformation(nroConsulta) {
     let persAsist = document.querySelector("#option_listPers").value;
     let fecha = document.querySelector("#input_calendario").value;
-
     let parametros = {
         "nroConsulta": nroConsulta,
         "fecha": fecha,
         "persAsist": persAsist
     }
-
     let response = await fetch('./consultas',
         {
             "method": "POST",
             "headers": { "Content-Type": "application/json" },
             "body": JSON.stringify(parametros)
         })
-
     if (response.ok) {
         let t = await response.json();
         listadoDeConsulta = t;
-
-        console.log('resultado consulta ', listadoDeConsulta);
         if (listadoDeConsulta.length != 0) {
             formConsultas.classList.toggle("hide");
             cargarConsulta()
@@ -98,7 +90,6 @@ async function loadAllInformation(nroConsulta) {
         else
             alert('NO HAY CONSULTAS PARA MOSTRAR');
     } else {
-        //buscar una respuesta en el html
         console.log("fallo el post");
     }
 }
@@ -134,8 +125,8 @@ function cargarConsulta() {
                     `;
         }
         html += `
-        </table>
-        <button type="submit" class="btn btn-primary btn-mostrar-consultas" id="volver">Volver</button>`;
+            </table>
+            <button type="submit" class="btn btn-primary btn-mostrar-consultas" id="volver">Volver</button>`;
 
         formConsultas.classList.toggle("hide");
         formConsultas.innerHTML = html;

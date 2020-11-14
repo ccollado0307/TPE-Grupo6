@@ -1,5 +1,3 @@
-
-
 let btnAgregar = document.querySelector("#agregarAsistencia");
 btnAgregar.addEventListener("click", agregarAsistencia);
 
@@ -7,12 +5,11 @@ let listadoDePersonal = [];
 
 async function loadList() {
     let container = document.querySelector("#use-ajax");
-    //  container.innerHTML = "<h1> ...LOADING... </h1>";
     try {
-        let response = await fetch('./reporte'); 
+        let response = await fetch('./reporte');
         if (response.ok) {
             let t = await response.json();
-            listadoDePersonal = t; //reemplazo arreglo global listadoDePersonal por el que viene de la api 
+            listadoDePersonal = t; //reemplaza arreglo global listadoDePersonal por el que viene de la api 
             mostrarTablaPersonal(); //muestro todo el personal almacenado en la base de datos
         }
         else {
@@ -23,7 +20,6 @@ async function loadList() {
         container.innerHTML = "<h1>Connection error</h1>";
     };
 }
-
 
 function mostrarTablaPersonal() {
     html = "";
@@ -49,44 +45,37 @@ function mostrarTablaPersonal() {
     }
 
     document.querySelector("#tblPersonal").innerHTML = html;
-
     let btnAgregar = document.querySelector("#agregarPersonal");
     btnAgregar.addEventListener("click", agregarPersonal);
 }
 
-
 async function agregarAsistencia() {
-
     let arregloDeAsistencia = [];
     let fecha = document.querySelector("#start").value;
-
     for (let i = 0; i < listadoDePersonal.length; i++) {
-
         let asistencia;
         let causa;
-        if(document.querySelector(`#presente${i}`).checked){
-            asistencia="presente";
-            causa="asistio";
-        }else{
-            asistencia="ausente";
-            causa=(document.querySelector(`#causa${i}`).selectedIndex);
-            switch(causa){
-                case 0: causa="Autorizado";
-                break;
-                case 1: causa="Guardia Saliente";
-                break;
-                case 2: causa="Guardia Entrante";
-                break;
-                case 3: causa="Fuerza Empleo Inmediato";
-                break;
+        if (document.querySelector(`#presente${i}`).checked) {
+            asistencia = "Presente";
+            causa = "Asistio";
+        } else {
+            asistencia = "Ausente";
+            causa = (document.querySelector(`#causa${i}`).selectedIndex);
+            switch (causa) {
+                case 0: causa = "Autorizado";
+                    break;
+                case 1: causa = "Guardia Saliente";
+                    break;
+                case 2: causa = "Guardia Entrante";
+                    break;
+                case 3: causa = "Fuerza Empleo Inmediato";
+                    break;
             }
         }
-
         let num = listadoDePersonal[i].numero;
         let grado = listadoDePersonal[i].grado;
         let nombre = listadoDePersonal[i].nombre;
         let apellido = listadoDePersonal[i].apellido;
-
         let asist = {
             "dia": fecha,
             "numero": num,
@@ -94,11 +83,10 @@ async function agregarAsistencia() {
             "nombre": nombre,
             "apellido": apellido,
             "asistencia": asistencia,
-            "causa":causa
+            "causa": causa
         }
         arregloDeAsistencia.push(asist);
     }
-
     let resp = await fetch('./reporte', {
         "method": "POST",
         "headers": { "Content-Type": "application/json" },
@@ -108,42 +96,33 @@ async function agregarAsistencia() {
         let container = document.querySelector("#use-ajax");
         container.innerHTML = "La asistencia se ha registrado correctamente";
     } else {
-        //buscar una respuesta en el html
-        console.log("fallo el post");
-
+        container.innerHTML = "Fallo el Post";
     }
 }
 
 async function agregarPersonal() {
-
-    let numero=document.querySelector('#addNumero').value;
-    let grado=document.querySelector('#addGrado').value;
-    let apellido=document.querySelector('#addApellido').value;
-    let nombre=document.querySelector('#addNombre').value;
-
+    let numero = document.querySelector('#addNumero').value;
+    let grado = document.querySelector('#addGrado').value;
+    let apellido = document.querySelector('#addApellido').value;
+    let nombre = document.querySelector('#addNombre').value;
 
     let addPers = {
         "numero": numero,
         "grado": grado,
         "apellido": apellido,
         "nombre": nombre,
-        }
-    
+    }
     let resp = await fetch('./reporte/1', {
-            "method": "POST",
-            "headers": { "Content-Type": "application/json" },
-            "body": JSON.stringify(addPers)
-        })
-        if (resp.ok) {
-            let container = document.querySelector("#use-ajax");
-            container.innerHTML = "El Personal se ha registrado correctamente";
-        } else {
-            //buscar una respuesta en el html
-            console.log("fallo el post");
-    
-        }    
+        "method": "POST",
+        "headers": { "Content-Type": "application/json" },
+        "body": JSON.stringify(addPers)
+    })
+    if (resp.ok) {
+        let container = document.querySelector("#use-ajax");
+        container.innerHTML = "El Personal se ha registrado correctamente";
+    } else {
+        container.innerHTML = "Fallo el Post";
+    }
 }
 
-
 loadList();
-

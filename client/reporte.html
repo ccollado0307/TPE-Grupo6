@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
     <!--Init header-->
     <header>
         <ul class="nav">
@@ -25,7 +24,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="galeria.html">Galeria de Imágenes</a>
             </li>
-  
             <li class="nav-item">
                 <a class="nav-link" href="login.html">Logout</a>
             </li>
@@ -42,8 +40,8 @@
     <!--Init article-->
     <article class="divArticle">
         <form class="formParteNov">
-            <h4> PARTE DE NOVEDADES DEL ESC COM BL 1 - <input class="inputCalendario" type="date" id="start" name="trip-start" value="" min="2020-01-01" max="2023-12-31"></h4>
-
+            <h4> PARTE DE NOVEDADES DEL ESC COM BL 1 - <input class="inputCalendario" type="date" id="start"
+                    name="trip-start" value="" min="2020-01-01" max="2023-12-31"></h4>
             <table class="tableParteNov">
                 <thead>
                     <tr>
@@ -56,45 +54,34 @@
                         <th>Causa</th>
                     </tr>
                 </thead>
-
-                    <tbody id="tblPersonal">
-
-                </tbody>
+                  <tbody id="tblPersonal">
+                  </tbody>
             </table>
             <div id="use-ajax"></div>
             <button type="submit" class="btn btn-primary btn-enviar" id="agregarAsistencia">Enviar</button>
             <p id="respAsistencia"></p>
-        
-            <div id="addPersonal" >
+
+            <div id="addPersonal">
                 Numero<input type="number" id="addNumero">
                 Grado<select id="addGrado">
-                        <option value="CT">CT</option>
-                        <option value="CM">CM</option>
-                        <option value="MY">MY</option>
-                    </select>
+                    <option value="CT">CT</option>
+                    <option value="CM">CM</option>
+                    <option value="MY">MY</option>
+                </select>
                 Apellido<input type="text" id="addApellido">
                 Nombre<input type="text" id="addNombre">
                 <button type="submit" class="btn btn-primary btn-enviar" id="agregarPersonal">Agregar</button>
             </div>
-        
-        
-        
-        
-        
         </form>
-      
-    
     </article>
     <!--End article-->
 
     <!--Init footer-->
     <footer>
         <div class="divInfo">
-
             <div class="divContactos">
                 <ul class="listUl">
                     <li><img src="images/location.jpg" class="iconosInfo">Figueroa y Pujol S/N - Tandil - CP: 7000</li>
-
                     <li><img src="images/TE.jpg" class="iconosInfo">+54 9 11 4346-6100 Int 343</li>
                     <li><img src="images/email.jpg" class="iconosInfo">esccombl1@ejercito.mil.ar</li>
                 </ul>
@@ -121,17 +108,14 @@
         </div>
 
         <div class="divGrupo">
-            <p>Certificación Curso Programador Full Stack 2020 - CFL Nro 403 - Grupo 6 - Integrantes: Braian Aued,
-                Cecilia Collado, Viviana Mendoza</p>
+            <p>Certificación Curso Programador Full Stack 2020 - CFL Nro 403 - Grupo 6 - Integrantes: Braian Aued, Cecilia Collado, Viviana Mendoza</p>
         </div>
 
     </footer>
     <!--End footer-->
 
     <!-- Optional JavaScript -->
-        
     <script src="js/reporte.js"></script>
-    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -1,6 +1,5 @@
 import { Persona } from "./persona";
 
-
 export class PersonalActivo extends Persona {
 
     private numero: number;
@@ -11,7 +10,6 @@ export class PersonalActivo extends Persona {
         super(nombre, apellido);
         this.numero = numero;
         this.grado = grado;
-
     }
 
     public getnumero(): number {
@@ -33,6 +31,5 @@ export class PersonalActivo extends Persona {
     public datosPersonales(): String {
         this.datosPers = this.datosPers + " " + this.getNombre() + " " + this.getApellido() + " " + this.getGrado() + " " + this.getNumero.toString();
         return this.datosPers;
-
     }
 }

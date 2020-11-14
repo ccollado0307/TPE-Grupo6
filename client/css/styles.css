@@ -1,4 +1,4 @@
-/* header general */
+/***** header general *****/
 header {
     background-image: url("../images/header.jpg");
     background-repeat: no-repeat;
@@ -8,7 +8,7 @@ header {
     background-position: center; 
 }
 
-/* article general */
+/***** article general *****/
 .divArticle {
     display: flex;
     background-image: url("../images/article.jpg");
@@ -18,7 +18,7 @@ header {
     background-size: 100% 100%; 
 }
 
-/* nav escritorio */
+/***** nav escritorio *****/
 .nav {
     padding-top: 115px;
 }
@@ -28,7 +28,7 @@ header {
     font-weight: bold;
 }
 
-/* footer general */
+/***** footer general *****/
 footer {
     display: flex;
     flex-direction: column;
@@ -114,10 +114,11 @@ footer {
     align-items: center;
 }
 
-/* Formulario Institucional */
+/***** Formulario Institucional *****/
 .container {
     padding-top: 10px;
 }
+
 .claseH4 {
     font-style: bold;
 }
@@ -128,17 +129,18 @@ footer {
     font-size: xx-large;
     text-align: center;
 }
+
 .clasePContainer {
     text-align: justify;
     padding-left: 20px;
 }
 
-/* Formulario Login */
+/***** Formulario Login *****/
 .formularioLogin{
     margin: auto;
 }
 
-/* Galeria de Imagenes*/
+/***** Galeria de Imagenes *****/
 .contenedor{
     display: flex;
     flex-direction: column;
@@ -154,18 +156,20 @@ footer {
     margin-top: 30px;
     padding: auto auto;
 }
+
 .conteiner{
     display: flex;
     flex-direction: column;
     height: 80%;
     width: 40%;
 }
+
 .Aniversario{
     font-family:sans-serif;
     text-align: center;
 }
 
- #carouselExampleInterval, #carouselExampleInterval1, #carouselExampleInterval2, #carouselExampleInterval3{
+#carouselExampleInterval, #carouselExampleInterval1, #carouselExampleInterval2, #carouselExampleInterval3{
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -179,14 +183,13 @@ footer {
     object-fit: cover;
 } 
 
-
 img{
     height: 400px;
     width: 200px; 
     object-fit: cover;
 }  
 
-/* Formulario Parte de Novedades */
+/***** Formulario Parte de Novedades *****/
 .formParteNov {
     margin: auto auto;
 }
@@ -219,7 +222,6 @@ td, th{
     width: 100%;
     flex-direction: row;
     padding: 2px;
-    
     align-items: center;
     justify-content: space-between;
 }
@@ -228,8 +230,7 @@ td, th{
     width: 10%;
 }
 
-
-/* Consultas */
+/***** Consultas *****/
 .form-check {
     padding: 1%;
     margin-left: 6%;
@@ -237,11 +238,12 @@ td, th{
 
 .formArticleConsultas {
     margin: auto auto;
-    width: 45%;
+    width: 60%;
     height: 50%;
+}
 
-}.btn-consultas {
-    margin-left: 68%;
+.btn-consultas {
+    margin-left: 70%;
     margin-top: 15px;
     width: 30%;
 }
@@ -279,18 +281,14 @@ td, th{
 .tableConsulta {
     margin: auto;
     text-align: center; 
-    width: 130%;
+    width: 100%;
     height: 50%;
 }
 
 .btn-mostrar-consultas {
-    margin-left: 110%;
+    margin-left: 88%;
     margin-top: 15px;
 }
-
-
-
-
 
 
 /*****************************Cambios para version mobile**********************************/
@@ -303,7 +301,6 @@ td, th{
 .divSocial{
     display: none;
 }
-
 
 .divUbicacion{
     display: none;
@@ -347,7 +344,6 @@ footer{
     -o-transition:all 500ms ease;
     transition:all 500ms ease; /* Establecemos una transición a todas las propiedades */
     }
- 
   
 .social ul li .icon-facebook {
     background:#3b5998;
@@ -388,7 +384,7 @@ footer{
     width: 75%;
 }
 
-/* Cambios en login */
+/***** Cambios en login *****/
 .formularioLogin {
     height: 80%;
     width: 80%;
@@ -398,14 +394,13 @@ footer{
     margin-bottom: auto;
 }
 
-/* Cambios en header */
+/***** Cambios en header *****/
 header {
     background-image: url("../images/mobileheader.jpg");
     background-repeat: no-repeat;
     width: 100%;
     height: auto;
     background-size: 105% 105%; 
-    /*background-position: center; */
     object-fit: cover;
     object-position: center center;
 }
