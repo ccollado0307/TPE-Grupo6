@@ -9,12 +9,12 @@ export class ConsultasController {
 
     constructor(private consultasService: ConsultasService) { }
 
-    @Get()
+    @Get() //Devuelve el listado de personal activo
     public getCargarPersonal(): PersonalActivo[] {
         return this.consultasService.getCargarPersonal();
     }
 
-    @Post()
+    @Post() //Devuelve el resultado de la consulta seleccionada
     create(@Body() consultas: any): PersonalAsistencia[] {
         return this.consultasService.getInformationQuery(consultas);
     }

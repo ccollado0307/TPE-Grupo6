@@ -1,12 +1,25 @@
-2020-11-09,1,MY,Braian,Aued,presente,asistio
-2020-11-09,2,CT,Viviana,Mendoza,ausente,Autorizado
-2020-11-09,3,CT,Cecilia,Collado,ausente,Guardia Saliente
-2020-11-09,4,CM,PruebaNombre,PruebaApellido,ausente,Guardia Entrante
-2020-11-08,1,MY,Braian,Aued,ausente,Autorizado
-2020-11-08,2,CT,Viviana,Mendoza,presente,asistio
-2020-11-08,3,CT,Cecilia,Collado,ausente,Fuerza Empleo Inmediato
-2020-11-08,4,CM,PruebaNombre,PruebaApellido,ausente,Autorizado
-2020-11-07,1,MY,Braian,Aued,ausente,Autorizado
-2020-11-07,2,CT,Viviana,Mendoza,ausente,Guardia Entrante
-2020-11-07,3,CT,Cecilia,Collado,presente,asistio
-2020-11-07,4,CM,PruebaNombre,PruebaApellido,ausente,Guardia Entrante
+2020-11-01,1,MY,Braian,Aued,Presente,Asistio
+2020-11-01,2,CT,Viviana,Mendoza,Ausente,Guardia Saliente
+2020-11-01,3,CT,Cecilia,Collado,Presente,Asistio
+2020-11-02,1,MY,Braian,Aued,Ausente,Autorizado
+2020-11-02,2,CT,Viviana,Mendoza,Ausente,Guardia Entrante
+2020-11-02,3,CT,Cecilia,Collado,Ausente,Fuerza Empleo Inmediato
+2020-11-03,1,MY,Braian,Aued,Presente,Asistio
+2020-11-03,2,CT,Viviana,Mendoza,Presente,Asistio
+2020-11-03,3,CT,Cecilia,Collado,Presente,Asistio
+2020-11-06,1,MY,Braian,Aued,Presente,Asistio
+2020-11-06,2,CT,Viviana,Mendoza,Ausente,Autorizado
+2020-11-06,3,CT,Cecilia,Collado,Presente,Asistio
+2020-11-06,4,CM,Fulanito,Fulano,Ausente,Guardia Entrante
+2020-11-10,1,MY,Braian,Aued,Ausente,Autorizado
+2020-11-10,2,CT,Viviana,Mendoza,Ausente,Guardia Saliente
+2020-11-10,3,CT,Cecilia,Collado,Ausente,Guardia Entrante
+2020-11-10,4,CM,Fulanito,Fulano,Ausente,Fuerza Empleo Inmediato
+2020-11-04,1,MY,Braian,Aued,Presente,Asistio
+2020-11-04,2,CT,Viviana,Mendoza,Presente,Asistio
+2020-11-04,3,CT,Cecilia,Collado,Presente,Asistio
+2020-11-04,4,CM,Fulanito,Fulano,Presente,Asistio
+2020-11-05,1,MY,Braian,Aued,Ausente,Autorizado
+2020-11-05,2,CT,Viviana,Mendoza,Ausente,Guardia Saliente
+2020-11-05,3,CT,Cecilia,Collado,Ausente,Guardia Entrante
+2020-11-05,4,CM,Fulanito,Fulano,Ausente,Fuerza Empleo Inmediato

@@ -30,7 +30,6 @@ export class ReporteService {
     }
 
     public registrarAsistencia(asist: any[]): string {
-
         for (let i: number = 0; i < asist.length; i++) {
             let oficial = asist[i];
             let dia = asist[i].dia;
@@ -39,7 +38,6 @@ export class ReporteService {
             const personalAct = new PersonalActivo(parseInt(oficial.numero), oficial.grado, oficial.nombre, oficial.apellido);
             fs.appendFileSync('registroAsistencia.csv', `${dia},${personalAct.getNumero()},${personalAct.getGrado()},${personalAct.getApellido()},${personalAct.getNombre()},${asistencia},${causa}\n`);
         }
-
         return "Asistencia cargada correctamente";
     }
 
@@ -48,9 +46,7 @@ export class ReporteService {
         let oficial: PersonalActivo = new PersonalActivo(parseInt(persona.numero), persona.grado, persona.nombre, persona.apellido);
         fs.appendFileSync('personal.csv', `\n${oficial.getNumero()},${oficial.getGrado()},${oficial.getApellido()},${oficial.getNombre()}`);
 
-
         return "Asistencia cargada correctamente";
-
     }
     //Actualizando repositorio
 }
