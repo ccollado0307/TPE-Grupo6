@@ -1,17 +1,35 @@
-import { Persona } from "./persona";
 
-export class PersonalActivo extends Persona {
 
+export class PersonalActivo {
+
+    private apellido: String;
+    private nombre: String;
     private numero: number;
     private grado: String;
     protected datosPers: String;
 
     public constructor(numero: number, grado: String, nombre: String, apellido: String) {
-        super(nombre, apellido);
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.numero = numero;
         this.grado = grado;
     }
 
+    public getNombre(): String {
+        return this.nombre;
+    }
+
+    public getApellido(): String {
+        return this.apellido;
+    }
+
+    public setNombre(nombre: String): void {
+        this.nombre = nombre;
+    }
+
+    public setApellido(apellido: String): void {
+        this.apellido = apellido;
+    }
     public getnumero(): number {
         return this.numero;
     }
