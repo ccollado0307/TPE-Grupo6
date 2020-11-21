@@ -26,7 +26,7 @@ function mostrarTablaPersonal() {
     for (let i = 0; i < listadoDePersonal.length; i++) {
         html += `
         <tr>
-            <td type=”number” id="numero${i}">${listadoDePersonal[i].numero}</td>
+            <td type=”number” id="numero${i}">${listadoDePersonal[i].antiguedad}</td>
             <td type=”text” id="grado${i}">${listadoDePersonal[i].grado}</td>
             <td type=”text” id="nombre${i}">${listadoDePersonal[i].nombre}</td>
             <td type=”text” id="apellido${i}">${listadoDePersonal[i].apellido}</td>
@@ -72,13 +72,13 @@ async function agregarAsistencia() {
                     break;
             }
         }
-        let num = listadoDePersonal[i].numero;
+        let antiguedad = listadoDePersonal[i].antiguedad;
         let grado = listadoDePersonal[i].grado;
         let nombre = listadoDePersonal[i].nombre;
         let apellido = listadoDePersonal[i].apellido;
         let asist = {
             "dia": fecha,
-            "numero": num,
+            "antiguedad": antiguedad,
             "grado": grado,
             "nombre": nombre,
             "apellido": apellido,
@@ -101,13 +101,13 @@ async function agregarAsistencia() {
 }
 
 async function agregarPersonal() {
-    let numero = document.querySelector('#addNumero').value;
+    let antiguedad = document.querySelector('#addNumero').value;
     let grado = document.querySelector('#addGrado').value;
     let apellido = document.querySelector('#addApellido').value;
     let nombre = document.querySelector('#addNombre').value;
 
     let addPers = {
-        "numero": numero,
+        "antiguedad": antiguedad,
         "grado": grado,
         "apellido": apellido,
         "nombre": nombre,

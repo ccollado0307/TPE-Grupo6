@@ -4,14 +4,14 @@ export class PersonalActivo {
 
     private apellido: String;
     private nombre: String;
-    private numero: number;
+    private antiguedad: number;
     private grado: String;
     protected datosPers: String;
 
-    public constructor(numero: number, grado: String, nombre: String, apellido: String) {
+    public constructor(antiguedad: number, grado: String, nombre: String, apellido: String) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.numero = numero;
+        this.antiguedad = antiguedad;
         this.grado = grado;
     }
 
@@ -30,24 +30,16 @@ export class PersonalActivo {
     public setApellido(apellido: String): void {
         this.apellido = apellido;
     }
-    public getnumero(): number {
-        return this.numero;
+    public getAntiguedad(): number {
+        return this.antiguedad;
     }
 
     public getGrado(): String {
         return this.grado;
     }
 
-    public setNumero(numero: number) {
-        this.numero = numero;
+    public setAntiguedad(antiguedad: number) {
+        this.antiguedad = antiguedad;
     }
 
-    public getNumero(): number {
-        return this.numero;
-    }
-
-    public datosPersonales(): String {
-        this.datosPers = this.datosPers + " " + this.getNombre() + " " + this.getApellido() + " " + this.getGrado() + " " + this.getNumero.toString();
-        return this.datosPers;
-    }
 }

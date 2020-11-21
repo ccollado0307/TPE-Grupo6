@@ -35,16 +35,16 @@ export class ReporteService {
             let dia = asist[i].dia;
             let asistencia = asist[i].asistencia;
             let causa = asist[i].causa;
-            const personalAct = new PersonalActivo(parseInt(oficial.numero), oficial.grado, oficial.nombre, oficial.apellido);
-            fs.appendFileSync('registroAsistencia.csv', `${dia},${personalAct.getNumero()},${personalAct.getGrado()},${personalAct.getApellido()},${personalAct.getNombre()},${asistencia},${causa}\n`);
+            const personalAct = new PersonalActivo(parseInt(oficial.antiguedad), oficial.grado, oficial.nombre, oficial.apellido);
+            fs.appendFileSync('registroAsistencia.csv', `${dia},${personalAct.getAntiguedad()},${personalAct.getGrado()},${personalAct.getApellido()},${personalAct.getNombre()},${asistencia},${causa}\n`);
         }
         return "Asistencia cargada correctamente";
     }
 
     public registrarPersona(persona: any): string {
 
-        let oficial: PersonalActivo = new PersonalActivo(parseInt(persona.numero), persona.grado, persona.nombre, persona.apellido);
-        fs.appendFileSync('personal.csv', `\n${oficial.getNumero()},${oficial.getGrado()},${oficial.getApellido()},${oficial.getNombre()}`);
+        let oficial: PersonalActivo = new PersonalActivo(parseInt(persona.antiguedad), persona.grado, persona.nombre, persona.apellido);
+        fs.appendFileSync('personal.csv', `\n${oficial.getAntiguedad()},${oficial.getGrado()},${oficial.getApellido()},${oficial.getNombre()}`);
 
         return "Asistencia cargada correctamente";
     }
