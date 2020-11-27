@@ -54,12 +54,12 @@ export class ConsultasService {
         return this.listadoAsistencia;
     }
 
-    //Recibe el numero de consulta, personal y fecha y selecciona la informacion a devolver 
+    //Recibe el numero de consulta, personal y fecha; y selecciona la informacion a devolver 
     public getInformationQuery(parametros: any): any {
         this.listadoConsulta = [];
-        this.listadoAsistencia = this.loadInformation();
+        this.listadoAsistencia = this.loadInformation(); 
         switch (parametros.nroConsulta) {
-            case 1: this.listadoConsulta = this.loadAllInformationQuery1(parametros.persAsist);
+            case 1: this.listadoConsulta = this.loadAllInformationQuery1(parametros.persAsist); 
                 break;
             case 2: this.listadoConsulta = this.loadAllInformationQuery2(parametros.fecha);
                 break;
@@ -72,7 +72,6 @@ export class ConsultasService {
         }
         return this.listadoConsulta;
     }
-
 
     //Resultado de la consulta numero 1
     private loadAllInformationQuery1(persAct: string): PersonalAsistencia[] {

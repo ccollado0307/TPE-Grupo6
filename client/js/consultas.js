@@ -19,16 +19,15 @@ async function loadList() {
 }
 
 function cargarPersonal() {
-    let html = "";
+    let html = ""; 
     for (let i = 0; i < listadoDePersonal.length; i++) {
         html += `
-            <option type=”text” id="numeroC${i}"> 
+            <option type=”text” id="numeroC${i}">
             ${listadoDePersonal[i].grado}  
             ${listadoDePersonal[i].nombre}   
             ${listadoDePersonal[i].apellido}  
            `;
     }
-
     document.querySelector("#option_listPers").innerHTML = html;
 }
 
@@ -50,6 +49,23 @@ function tipoConsulta() {
             nroConsulta += i + 1;
         }
     }
+
+    //No se indico ninguna consulta
+    if (nroConsulta == 0) { 
+        document.getElementById('btn_consulta').setAttribute('data-toggle', 'modal');
+        document.getElementById('btn_consulta').setAttribute('data-target', '#myModal');
+    } else {
+        document.getElementById('btn_consulta').setAttribute('data-toggle', 'hide');
+    }
+
+    //No se indico ninguna consulta
+    if (nroConsulta == 0){ 
+        document.getElementById('btn_consulta').setAttribute('data-toggle', 'modal');
+        document.getElementById('btn_consulta').setAttribute('data-target', '#myModal');
+    } else {
+        document.getElementById('btn_consulta').setAttribute('data-toggle', 'hide');
+    }
+
     switch (nroConsulta) {
         case 1: loadAllInformation(1);
             break;
@@ -61,19 +77,19 @@ function tipoConsulta() {
             break;
         case 5: loadAllInformation(5);
             break;
-        default:
-            alert('Seleccione una Consulta');
     }
 }
 
 async function loadAllInformation(nroConsulta) {
-    let persAsist = document.querySelector("#option_listPers").value;
+    let persAsist = document.querySelector("#option_listPers").value; 
     let fecha = document.querySelector("#input_calendario").value;
+
     let parametros = {
         "nroConsulta": nroConsulta,
         "fecha": fecha,
         "persAsist": persAsist
     }
+
     let response = await fetch('./consultas',
         {
             "method": "POST",
@@ -86,9 +102,9 @@ async function loadAllInformation(nroConsulta) {
         if (listadoDeConsulta.length != 0) {
             formConsultas.classList.toggle("hide");
             cargarConsulta()
-        }
-        else
+        } else {
             alert('NO HAY CONSULTAS PARA MOSTRAR');
+        }
     } else {
         console.log("fallo el post");
     }
@@ -99,7 +115,7 @@ function cargarConsulta() {
     <thead>
         <tr>
             <th class="th">Fecha</th>
-            <th class="th">Numero</th>
+            <th class="th">Antiguedad</th>
             <th class="th">Grado</th>
             <th class="th">Apellido</th>
             <th class="th">Nombre</th>
@@ -115,7 +131,7 @@ function cargarConsulta() {
             html += `
                     <tr>
                         <td type=”fecha” id="fecha${i}">${listadoDeConsulta[i].fecha}</td>
-                        <td type=”number” id="numero${i}">${listadoDeConsulta[i].numero}</td>
+                        <td type=”number” id="Antiguedad${i}">${listadoDeConsulta[i].antiguedad}</td>
                         <td type=”text” id="grado${i}">${listadoDeConsulta[i].grado}</td>
                         <td type=”text” id="apellido${i}">${listadoDeConsulta[i].apellido}</td>
                         <td type=”text” id="nombre${i}">${listadoDeConsulta[i].nombre}</td>

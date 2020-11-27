@@ -1,12 +1,9 @@
-
-
 export class PersonalActivo {
 
     private apellido: String;
     private nombre: String;
     private antiguedad: number;
     private grado: String;
-    protected datosPers: String;
 
     public constructor(antiguedad: number, grado: String, nombre: String, apellido: String) {
         this.nombre = nombre;
@@ -41,5 +38,4 @@ export class PersonalActivo {
     public setAntiguedad(antiguedad: number) {
         this.antiguedad = antiguedad;
     }
-
 }
