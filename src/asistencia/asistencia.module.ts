@@ -9,6 +9,9 @@ import { MotivoService } from 'src/motivo/motivo.service';
 import { PersonalController } from 'src/personal/personal.controller';
 import { Personal } from 'src/personal/personal.entity';
 import { PersonalService } from 'src/personal/personal.service';
+import { UnidadController } from 'src/unidad/unidad.controller';
+import { Unidad } from 'src/unidad/unidad.entity';
+import { UnidadService } from 'src/unidad/unidad.service';
 import { AsistenciaController } from './asistencia.controller';
 import { Asistencia } from './asistencia.entity';
 import { AsistenciaService } from './asistencia.service';
@@ -19,10 +22,11 @@ import { AsistenciaService } from './asistencia.service';
       Asistencia,
       Motivo,
       Grado,
-      Personal
+      Personal,
+      Unidad
     ])
   ],
-  controllers: [AsistenciaController, MotivoController, GradoController, PersonalController],
-  providers: [AsistenciaService, MotivoService, GradoService, PersonalService]
+  controllers: [AsistenciaController, MotivoController, GradoController, PersonalController,UnidadController],
+  providers: [AsistenciaService, MotivoService, GradoService, PersonalService,UnidadService]
 })
 export class AsistenciaModule { }

@@ -11,7 +11,7 @@ export class PersonalService {
     constructor(
         @InjectRepository(Personal) private readonly personalRepository: Repository<Personal>,
         @InjectRepository(Grado) private readonly gradoRepository: Repository<Grado>,
-        @InjectRepository(Asistencia) private readonly asistenciaRepository: Repository<Asistencia>,
+        @InjectRepository(Asistencia) private readonly asistenciaRepository:Repository<Asistencia>,
         @InjectRepository(Unidad) private readonly unidadRepository: Repository<Unidad>
     ) { }
 

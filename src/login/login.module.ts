@@ -9,6 +9,12 @@ import { GradoService } from 'src/grado/grado.service';
 import { MotivoController } from 'src/motivo/motivo.controller';
 import { Motivo } from 'src/motivo/motivo.entity';
 import { MotivoService } from 'src/motivo/motivo.service';
+import { PersonalController } from 'src/personal/personal.controller';
+import { Personal } from 'src/personal/personal.entity';
+import { PersonalService } from 'src/personal/personal.service';
+import { UnidadController } from 'src/unidad/unidad.controller';
+import { Unidad } from 'src/unidad/unidad.entity';
+import { UnidadService } from 'src/unidad/unidad.service';
 import { LoginController } from './login.controller';
 import { LoginService } from './login.service';
 import { User } from './user.entity';
@@ -18,11 +24,13 @@ import { User } from './user.entity';
       Grado,
       Asistencia,
       Motivo,
-      User
+      User,
+      Personal,
+      Unidad
     ])
   ],
-  controllers: [GradoController, AsistenciaController, MotivoController,LoginController],
-  providers: [GradoService, AsistenciaService, MotivoService,LoginService]
+  controllers: [GradoController, AsistenciaController, MotivoController,LoginController,PersonalController,UnidadController],
+  providers: [GradoService, AsistenciaService, MotivoService,LoginService,PersonalService,UnidadService]
 })
 export class LoginModule {
 }

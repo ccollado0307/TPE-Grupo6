@@ -6,6 +6,12 @@ import { AsistenciaService } from 'src/asistencia/asistencia.service';
 import { GradoController } from 'src/grado/grado.controller';
 import { Grado } from 'src/grado/grado.entity';
 import { GradoService } from 'src/grado/grado.service';
+import { PersonalController } from 'src/personal/personal.controller';
+import { Personal } from 'src/personal/personal.entity';
+import { PersonalService } from 'src/personal/personal.service';
+import { UnidadController } from 'src/unidad/unidad.controller';
+import { Unidad } from 'src/unidad/unidad.entity';
+import { UnidadService } from 'src/unidad/unidad.service';
 import { MotivoController } from './motivo.controller';
 import { Motivo } from './motivo.entity';
 import { MotivoService } from './motivo.service';
@@ -15,10 +21,12 @@ import { MotivoService } from './motivo.service';
     TypeOrmModule.forFeature([
       Motivo,
       Asistencia, 
-      Grado 
-    ])
+      Grado,
+      Personal,
+      Unidad
+      ])
   ],
-  controllers: [MotivoController, AsistenciaController, GradoController],
-  providers: [MotivoService, AsistenciaService, GradoService]
+  controllers: [MotivoController, AsistenciaController, GradoController,PersonalController,UnidadController],
+  providers: [MotivoService, AsistenciaService, GradoService,PersonalService,UnidadService]
 })
 export class MotivoModule {}
