@@ -13,10 +13,11 @@ export class User {
     @Column()
     private idUnidad: number;
     
-    @OneToMany((type) => User, user => user.idUnidad)
-    public usuarios: User[]; 
+    @ManyToOne((type) => Unidad, unidad => unidad.usuarios)
+    @JoinColumn({name: 'idUnidad'})
+    public unidad: Unidad;
 
-    public constructor(usuario:string,password: String,idUnidad:number) {
+    public constructor(usuario?:string, password?: String, idUnidad?:number) {
         this.usuario=usuario;
         this.idUnidad = idUnidad;
         this.contrasenia = password;

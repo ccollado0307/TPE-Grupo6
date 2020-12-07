@@ -1,5 +1,6 @@
 import { Grado } from "src/grado/grado.entity";
 import { Motivo } from "src/motivo/motivo.entity";
+import { Personal } from "src/personal/personal.entity";
 import { Column, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Entity } from "typeorm/decorator/entity/Entity";
 
@@ -19,6 +20,10 @@ import { Entity } from "typeorm/decorator/entity/Entity";
     @ManyToOne((type) => Grado, grado => grado.asistencias)
     @JoinColumn({name: 'idGrado'})
     public grado: Grado; 
+
+    @ManyToOne((type) => Personal, personal => personal.asistencias)
+    @JoinColumn({name: 'idPers'})
+    public personal: Personal;
  
     public constructor(fecha?: Date) {
         this.fecha = fecha;

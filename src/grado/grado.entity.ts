@@ -1,4 +1,5 @@
 import { Asistencia } from "src/asistencia/asistencia.entity";
+import { Personal } from "src/personal/personal.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('grado')
@@ -12,6 +13,9 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
     @OneToMany((type) => Asistencia, asistencia => asistencia.grado)
     public asistencias: Asistencia[]; 
+
+    @OneToMany((type) => Personal, personal => personal.grado)
+    public personal: Personal[]; 
 
     public constructor(nombre?: string) {
         this.nombre = nombre;
