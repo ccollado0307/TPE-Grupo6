@@ -8,6 +8,7 @@ import { GradoModule } from './grado/grado.module';
 import { ServeStaticModule } from '@nestjs/serve-static/dist/serve-static.module';
 import { join } from 'path';
 import { LoginModule } from './login/login.module';
+import { UnidadModule } from './unidad/unidad.module';
 
 @Module({
   imports: [
@@ -16,9 +17,11 @@ import { LoginModule } from './login/login.module';
     MotivoModule,
     GradoModule,
     LoginModule,
+    UnidadModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..',
-'client')})
+'client')}),
+    
   ],
   controllers: [AppController],
   providers: [AppService],

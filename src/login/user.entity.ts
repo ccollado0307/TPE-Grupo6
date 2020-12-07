@@ -1,5 +1,7 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { Unidad } from "src/unidad/unidad.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity('user')
 export class User {
     
     @PrimaryGeneratedColumn()
@@ -11,6 +13,9 @@ export class User {
     @Column()
     private idUnidad: number;
     
+    @OneToMany((type) => User, user => user.idUnidad)
+    public usuarios: User[]; 
+
     public constructor(usuario:string,password: String,idUnidad:number) {
         this.usuario=usuario;
         this.idUnidad = idUnidad;
