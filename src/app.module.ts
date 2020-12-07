@@ -5,13 +5,20 @@ import { AsistenciaModule } from './asistencia/asistencia.module';
 import { MotivoModule } from './motivo/motivo.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GradoModule } from './grado/grado.module';
+import { ServeStaticModule } from '@nestjs/serve-static/dist/serve-static.module';
+import { join } from 'path';
+import { LoginModule } from './login/login.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     AsistenciaModule,
     MotivoModule,
-    GradoModule
+    GradoModule,
+    LoginModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..',
+'client')})
   ],
   controllers: [AppController],
   providers: [AppService],
