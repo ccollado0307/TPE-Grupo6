@@ -1,5 +1,6 @@
 import { UseGuards } from "@nestjs/common";
 import { User } from "src/login/user.entity";
+import { Personal } from "src/personal/personal.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('unidad')
@@ -11,9 +12,11 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColum
     @Column()
     private nombre: string;
 
-    @ManyToOne((type) => Unidad, unidad => unidad.usuarios)
-    @JoinColumn({name: 'idUnidad'})
-    public unidad: Unidad;
+    @OneToMany((type) => User, usuario => usuario.unidad)
+    public usuarios: User[]; 
+
+    @OneToMany((type) => Personal, personal => personal.unidad)
+    public personal: Personal[]; 
 
     public constructor(nombre?: string) {
         this.nombre = nombre;
