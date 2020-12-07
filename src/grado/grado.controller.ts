@@ -8,7 +8,7 @@ import { GradoService } from './grado.service';
 export class GradoController {
     public constructor(
         private readonly gradoService: GradoService, 
-        private asistenciaService: AsistenciaService),
+        private asistenciaService: AsistenciaService,
         private readonly personalService: PersonalService)  { }
        
     @Get("getAll")
