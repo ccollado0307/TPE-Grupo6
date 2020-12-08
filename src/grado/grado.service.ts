@@ -22,4 +22,16 @@ export class GradoService {
             }, HttpStatus.NOT_FOUND);
         }  
     }
+
+    public async getGradoById(id: number): Promise<Grado> {
+        try {
+            const grado: Grado = await this.gradoRepository.findOne(id);
+            return grado;
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: "there is an error in the request, " + error,
+            }, HttpStatus.NOT_FOUND);
+        }
+    }
 }
