@@ -5,8 +5,8 @@ async function loadList() {
     try {
         let response = await fetch('./consultas');
         if (response.ok) {
-            let t = await response.json();
-            listadoDePersonal = t;
+            let t = await response.json();console.log(t);
+            listadoDePersonal = t; 
             cargarPersonal(); //Muestro todo el personal almacenado en la BD
         }
         else {
@@ -23,7 +23,7 @@ function cargarPersonal() {
     for (let i = 0; i < listadoDePersonal.length; i++) {
         html += `
             <option type=”text” id="numeroC${i}">
-            ${listadoDePersonal[i].grado}  
+            ${listadoDePersonal[i].grado.nombre}  
             ${listadoDePersonal[i].nombre}   
             ${listadoDePersonal[i].apellido}  
            `;
@@ -33,6 +33,11 @@ function cargarPersonal() {
 
 loadList();
 
+
+
+
+
+//INTEGRAR
 // Verifico cual es la consulta que esta seleccionada
 let btn_consulta = document.querySelector("#btn_consulta");
 btn_consulta.addEventListener("click", tipoConsulta);
@@ -48,14 +53,6 @@ function tipoConsulta() {
         if (manyCheckBox[i].checked) {
             nroConsulta += i + 1;
         }
-    }
-
-    //No se indico ninguna consulta
-    if (nroConsulta == 0) { 
-        document.getElementById('btn_consulta').setAttribute('data-toggle', 'modal');
-        document.getElementById('btn_consulta').setAttribute('data-target', '#myModal');
-    } else {
-        document.getElementById('btn_consulta').setAttribute('data-toggle', 'hide');
     }
 
     //No se indico ninguna consulta

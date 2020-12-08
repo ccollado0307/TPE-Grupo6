@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm/dist/typeorm.module';
+import { ConsultasController } from 'src/consultas/consultas.controller';
+import { ConsultasService } from 'src/consultas/consultas.service';
 import { GradoController } from 'src/grado/grado.controller';
 import { Grado } from 'src/grado/grado.entity';
 import { GradoService } from 'src/grado/grado.service';
@@ -23,10 +25,10 @@ import { AsistenciaService } from './asistencia.service';
       Motivo,
       Grado,
       Personal,
-      Unidad
+      Unidad 
     ])
   ],
-  controllers: [AsistenciaController, MotivoController, GradoController, PersonalController,UnidadController],
-  providers: [AsistenciaService, MotivoService, GradoService, PersonalService,UnidadService]
+  controllers: [AsistenciaController, MotivoController, GradoController, PersonalController,UnidadController, ConsultasController],
+  providers: [AsistenciaService, MotivoService, GradoService, PersonalService,UnidadService, ConsultasService]
 })
 export class AsistenciaModule { }

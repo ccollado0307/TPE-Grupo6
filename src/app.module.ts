@@ -10,6 +10,7 @@ import { join } from 'path';
 import { LoginModule } from './login/login.module';
 import { UnidadModule } from './unidad/unidad.module';
 import { PersonalModule } from './personal/personal.module';
+import { ConsultasModule } from './consultas/consultas.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { PersonalModule } from './personal/personal.module';
     LoginModule,
     UnidadModule,
     PersonalModule,
+    ConsultasModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..',
 'client')}),

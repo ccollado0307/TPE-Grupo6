@@ -1,36 +1,30 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import * as fs from 'fs';
+import { Asistencia } from 'src/asistencia/asistencia.entity';
+import { Grado } from 'src/grado/grado.entity';
+import { Personal } from 'src/personal/personal.entity';
 import { PersonalActivo } from 'src/reporte/personalActivo';
+import { Repository } from 'typeorm';
 import { PersonalAsistencia } from './personalAsistencia';
 
 @Injectable()
 export class ConsultasService {
+    constructor(
+        @InjectRepository(Grado) private readonly gradoRepository: Repository<Grado>,
+        @InjectRepository(Asistencia) private readonly asistenciaRepository: Repository<Asistencia>,
+        @InjectRepository(Personal) private readonly personalRepository: Repository<Personal>
+    ) { }
+    
+    //Carga listado de personal de la base de datos
+    public async loadListado(): Promise<Personal[]> {
+        const personal: Personal[] = await this.personalRepository.find({ relations: ["grado"] });
+        return personal;
+    }
 
+
+    //INTEGRAR
     private listadoDePersonal: PersonalActivo[];
-
-    //Carga los datos de Personal de la BD el select "option_listPers"
-    public getCargarPersonal(): any {
-        let listadoPers: PersonalActivo[] = this.loadListado();
-        return listadoPers;
-    }
-
-    //Carga listado de personal activo de la base de datos
-    private loadListado(): PersonalActivo[] {
-        let archivo = fs.readFileSync('personal.csv', 'utf8');
-        let lineas = archivo.split('\n');
-        const elementos = [];
-        for (let i = 0; i < lineas.length; i++) {
-            let linea = lineas[i].replace('\r', '');
-            let p = linea.split(',');
-            elementos.push(p);
-        }
-        this.listadoDePersonal = [];
-        for (let i = 0; i < elementos.length; i++) {
-            let personal = new PersonalActivo(parseInt(elementos[i][0]), (elementos[i][1]), elementos[i][2], elementos[i][3]);
-            this.listadoDePersonal.push(personal);
-        }
-        return this.listadoDePersonal;
-    }
 
     //Personal que asistio 
     private listadoConsulta: PersonalAsistencia[];
@@ -57,9 +51,9 @@ export class ConsultasService {
     //Recibe el numero de consulta, personal y fecha; y selecciona la informacion a devolver 
     public getInformationQuery(parametros: any): any {
         this.listadoConsulta = [];
-        this.listadoAsistencia = this.loadInformation(); 
+        this.listadoAsistencia = this.loadInformation();
         switch (parametros.nroConsulta) {
-            case 1: this.listadoConsulta = this.loadAllInformationQuery1(parametros.persAsist); 
+            case 1: this.listadoConsulta = this.loadAllInformationQuery1(parametros.persAsist);
                 break;
             case 2: this.listadoConsulta = this.loadAllInformationQuery2(parametros.fecha);
                 break;
@@ -93,7 +87,7 @@ export class ConsultasService {
         }
         return this.listadoConsulta;
     }
-    
+
     //Resultado de la consulta numero 3, 4 y 5
     private loadAllInformationQueryMotivo(fecha: string, motivo: string): PersonalAsistencia[] {
         for (let i = 0; i < this.listadoAsistencia.length; i++) {
