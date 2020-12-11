@@ -1,11 +1,11 @@
-// Load Consultas --> Carga lista de personal activo
+// Carga lista de personal
 let listadoDePersonal = [];
 
 async function loadList() {
     try {
         let response = await fetch('./consultas');
         if (response.ok) {
-            let t = await response.json();console.log(t);
+            let t = await response.json();
             listadoDePersonal = t; 
             cargarPersonal(); //Muestro todo el personal almacenado en la BD
         }
@@ -22,7 +22,7 @@ function cargarPersonal() {
     let html = ""; 
     for (let i = 0; i < listadoDePersonal.length; i++) {
         html += `
-            <option type=”text” id="numeroC${i}">
+            <option type=”text” id="numeroC${i}" value="${listadoDePersonal[i].idPers}">
             ${listadoDePersonal[i].grado.nombre}  
             ${listadoDePersonal[i].nombre}   
             ${listadoDePersonal[i].apellido}  
@@ -33,11 +33,6 @@ function cargarPersonal() {
 
 loadList();
 
-
-
-
-
-//INTEGRAR
 // Verifico cual es la consulta que esta seleccionada
 let btn_consulta = document.querySelector("#btn_consulta");
 btn_consulta.addEventListener("click", tipoConsulta);
@@ -64,27 +59,27 @@ function tipoConsulta() {
     }
 
     switch (nroConsulta) {
-        case 1: loadAllInformation(1);
+        case 1: loadAllInformation(1); //Una persona
             break;
-        case 2: loadAllInformation(2);
+        case 2: loadAllInformation(2); //Fecha
             break;
-        case 3: loadAllInformation(3);
+        case 3: loadAllInformation(3); //Gu Ent
             break;
-        case 4: loadAllInformation(4);
+        case 4: loadAllInformation(4); //Gu Sal
             break;
-        case 5: loadAllInformation(5);
+        case 5: loadAllInformation(5); //Autorizados
             break;
     }
 }
 
 async function loadAllInformation(nroConsulta) {
-    let persAsist = document.querySelector("#option_listPers").value; 
+    let idPers = document.querySelector("#option_listPers").value;
     let fecha = document.querySelector("#input_calendario").value;
 
     let parametros = {
         "nroConsulta": nroConsulta,
         "fecha": fecha,
-        "persAsist": persAsist
+        "idPers": parseInt(idPers)
     }
 
     let response = await fetch('./consultas',
@@ -96,6 +91,10 @@ async function loadAllInformation(nroConsulta) {
     if (response.ok) {
         let t = await response.json();
         listadoDeConsulta = t;
+
+        console.log(listadoDeConsulta);
+
+
         if (listadoDeConsulta.length != 0) {
             formConsultas.classList.toggle("hide");
             cargarConsulta()
@@ -112,12 +111,10 @@ function cargarConsulta() {
     <thead>
         <tr>
             <th class="th">Fecha</th>
-            <th class="th">Antiguedad</th>
             <th class="th">Grado</th>
             <th class="th">Apellido</th>
             <th class="th">Nombre</th>
-            <th class="th">Presente/Ausente</th>
-            <th class="th">Causa</th>
+            <th class="th">Motivo</th>
         </tr>
     </thead>
         <tbody id="tblConsulta"></tbody>`
@@ -127,13 +124,11 @@ function cargarConsulta() {
         for (let i = 0; i < listadoDeConsulta.length; i++) {
             html += `
                     <tr>
-                        <td type=”fecha” id="fecha${i}">${listadoDeConsulta[i].fecha}</td>
-                        <td type=”number” id="Antiguedad${i}">${listadoDeConsulta[i].antiguedad}</td>
-                        <td type=”text” id="grado${i}">${listadoDeConsulta[i].grado}</td>
-                        <td type=”text” id="apellido${i}">${listadoDeConsulta[i].apellido}</td>
-                        <td type=”text” id="nombre${i}">${listadoDeConsulta[i].nombre}</td>
-                        <td type=”text” id="asistencia${i}">${listadoDeConsulta[i].asistencia}</td>
-                        <td type=”text” id="motivo${i}">${listadoDeConsulta[i].motivo}</td>
+                        <td type=”fecha” id="fecha${i}">${listadoDeConsulta[i].fecha.substring( 0 , 10 )}</td>
+                        <td type=”text” id="grado${i}">${listadoDeConsulta[i].grado.nombre}</td>
+                        <td type=”text” id="apellido${i}">${listadoDeConsulta[i].personal.apellido}</td>
+                        <td type=”text” id="nombre${i}">${listadoDeConsulta[i].personal.nombre}</td>
+                        <td type=”text” id="motivo${i}">${listadoDeConsulta[i].motivo.motivo}</td>
                     </tr>
                     `;
         }
@@ -146,7 +141,7 @@ function cargarConsulta() {
         let botonVolver = document.getElementById("volver");
         botonVolver.addEventListener("click", volver);
     }
-}
+} 
 
 function volver() {
     window.location.href = './consultas.html';

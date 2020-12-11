@@ -8,9 +8,7 @@ import { Asistencia } from './asistencia.entity';
 @Injectable()
 export class AsistenciaService {
     constructor(
-        @InjectRepository(Asistencia) private readonly asistenciaRepository: Repository<Asistencia>,
-        @InjectRepository(Motivo) private readonly motivoRepository: Repository<Motivo>,
-        @InjectRepository(Grado) private readonly gradoRepository: Repository<Grado>
+        @InjectRepository(Asistencia) private readonly asistenciaRepository: Repository<Asistencia>
     ) { }
 
     public async getAll(): Promise<Asistencia[]> {

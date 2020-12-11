@@ -1,4 +1,3 @@
-import { UseGuards } from "@nestjs/common";
 import { User } from "src/login/user.entity";
 import { Personal } from "src/personal/personal.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";

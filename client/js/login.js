@@ -23,5 +23,4 @@ async function checkear() {
     if (await response.json()) {
         window.location.href = "/consultas.html";
     }
-
 }
