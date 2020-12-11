@@ -5,14 +5,10 @@ import { UnidadService } from 'src/unidad/unidad.service';
 import { Personal } from './personal.entity';
 import { PersonalService } from './personal.service';
 
-
 @Controller('personal')
 export class PersonalController {
     public constructor(
-        private readonly personalService: PersonalService,
-        private asistenciaService: AsistenciaService,
-        private gradoService: GradoService,
-        private unidadService: UnidadService) { }
+        private readonly personalService: PersonalService) { }
 
     @Get("getAll")
     public getAllPersonal(): Promise<Personal[]> {

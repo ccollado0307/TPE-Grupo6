@@ -18,7 +18,4 @@ export class LoginController {
     create(@Body() data: any): Promise<boolean> {
         return this.loginService.CheckearLogin(data);
     }
-
-
-    
 }

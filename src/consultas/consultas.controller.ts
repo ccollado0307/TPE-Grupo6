@@ -1,9 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Asistencia } from 'src/asistencia/asistencia.entity';
 import { Personal } from 'src/personal/personal.entity';
-/* import { PersonalActivo } from 'src/reporte/personalActivo'; */
 import { ConsultasService } from './consultas.service';
-/* import { PersonalAsistencia } from './personalAsistencia'; */
 
 @Controller('consultas')
 export class ConsultasController {

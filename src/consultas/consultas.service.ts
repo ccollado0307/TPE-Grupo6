@@ -1,17 +1,12 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-/* import * as fs from 'fs'; */
 import { Asistencia } from 'src/asistencia/asistencia.entity';
-import { Grado } from 'src/grado/grado.entity';
 import { Personal } from 'src/personal/personal.entity';
-/* import { PersonalActivo } from 'src/reporte/personalActivo'; */
 import { Repository } from 'typeorm';
-/* import { PersonalAsistencia } from './personalAsistencia'; */
 
 @Injectable()
 export class ConsultasService {
     constructor(
-        /* @InjectRepository(Grado) private readonly gradoRepository: Repository<Grado>, */
         @InjectRepository(Asistencia) private readonly asistenciaRepository: Repository<Asistencia>,
         @InjectRepository(Personal) private readonly personalRepository: Repository<Personal>,
     ) { }
