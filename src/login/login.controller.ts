@@ -14,10 +14,10 @@ export class LoginController {
 
     //Devuelve true si el usuario ingreso sus datos correctos o false 
     //si los datos ingresados no corresponden a usuario o contraseña valida
-    /*@Post()
-    create(@Body() data: any): boolean {
+    @Post()
+    create(@Body() data: any): Promise<boolean> {
         return this.loginService.CheckearLogin(data);
-    }*/
+    }
 
 
     

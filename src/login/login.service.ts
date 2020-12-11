@@ -9,7 +9,6 @@ import { Repository } from 'typeorm';
 export class LoginService {
     constructor(
         @InjectRepository(User) private readonly loginRepository: Repository<User>
-       // @InjectRepository(Asistencia) private readonly asistenciaRepository: Repository<Asistencia>,
     ) { }
 
     /*
@@ -38,6 +37,23 @@ export class LoginService {
         return false;
     }
 */
+    
+ 
+    public async CheckearLogin(data: any): Promise<boolean> {
+
+        const users: User[] = await this.loginRepository.find({
+            where:[
+                {"usuario": data.user,"contrasenia":data.key}
+             ]
+        });
+        console.log(users);
+        if (users.length > 0){
+                return true;
+        }
+    
+        return false;
+    }
+
     public async getAllUsers(): Promise<User[]> {
         try {
             const users: User[] = await this.loginRepository.find();
