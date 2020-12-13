@@ -56,7 +56,7 @@ function cargarListaDeGrados() {
     let html = "";
     for (let i = 0; i < listadoDeGrados.length; i++) {
         html += `
-                <option type=”text” value="idGrado${i}">
+                <option type=”text” value="idGrado${i+1}">
                 ${listadoDeGrados[i].nombre}  
                 `;
     }
@@ -164,8 +164,9 @@ async function agregarPersonal() {
     let apellido = document.querySelector('#addApellido').value;
     let nombre = document.querySelector('#addNombre').value;
 
+    //   "antiguedad": antiguedad,
+    
     let addPers = {
-     //   "antiguedad": antiguedad,
         "grado": grado,
         "apellido": apellido,
         "nombre": nombre,
