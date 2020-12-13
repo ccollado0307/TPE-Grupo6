@@ -30,20 +30,26 @@ export class PersonalService {
     public async registrarPersona(persona: any): Promise<string> {
         console.log(persona);
         try {
-           
+
             const cantPersonal: Personal[] = await this.personalRepository.find();
-            let dimensionPersonal:number = cantPersonal.length + 1;
+
+            let dimensionPersonal: number = cantPersonal.length + 1;
+
             //construyo una persona
             const personal: Personal = new Personal();
             personal.setApellido((persona.apellido).toUpperCase());
             personal.setNombre((persona.nombre).toUpperCase());
-            let nroGrado = (persona.grado).substring(7, 8);
+
+            let nroGrado = (persona.grado).substring(7,9);
             nroGrado = parseInt(nroGrado);
             personal.setIdGrado(nroGrado);
+
             //let antiguedad = parseInt(persona.antiguedad);
             personal.setAntiguedad(dimensionPersonal);
+
             personal.setIdUnidad(persona.idUnidad);
             personal.setActivo(persona.activo);
+
             await this.personalRepository.save(personal);
 
             return "ok";
@@ -54,7 +60,5 @@ export class PersonalService {
             }, HttpStatus.NOT_FOUND);
         }
 
-
-        return "ok"
     }
 }
