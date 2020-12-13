@@ -7,10 +7,12 @@ import { Grado } from './grado.entity';
 @Injectable()
 export class GradoService {
     constructor(
-        @InjectRepository(Grado) private readonly gradoRepository: Repository<Grado>
+        @InjectRepository(Grado) private readonly gradoRepository: Repository<Grado>,
+        @InjectRepository(Asistencia) private readonly asistenciaRepository: Repository<Asistencia>,
     ) { }
 
     public async getAllGrados(): Promise<Grado[]> {
+       
         try {
             const grados: Grado[] = await this.gradoRepository.find();
             return grados;

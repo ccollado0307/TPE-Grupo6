@@ -7,7 +7,9 @@ import { GradoService } from './grado.service';
 @Controller('grado')
 export class GradoController {
     public constructor(
-        private readonly gradoService: GradoService)  { }
+        private readonly gradoService: GradoService, 
+        private asistenciaService: AsistenciaService,
+        private readonly personalService: PersonalService)  { }
        
     @Get("getAll")
     public getAllGrados(): Promise<Grado[]> {

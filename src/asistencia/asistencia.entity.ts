@@ -5,7 +5,7 @@ import { Column, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Entity } from "typeorm/decorator/entity/Entity";
 
 @Entity('asistencia')
-    export class Asistencia {
+export class Asistencia {
     
     @PrimaryGeneratedColumn()
     idAsist: number;
@@ -39,5 +39,33 @@ import { Entity } from "typeorm/decorator/entity/Entity";
 
     public setFecha(fecha: Date){
         this.fecha = fecha;
+    }
+
+    public setIdAsist(id: number): void {
+        this.idAsist = id;
+    }
+
+    public getMotivo(): Motivo {
+        return this.motivo;
+    }
+
+    public setMotivo(motivo: Motivo):void {
+        this.motivo = motivo;
+    }
+
+    public setPersonal(personal:Personal): void {
+        this.personal=personal;
+    }
+
+    public getPersonal():Personal {
+       return this.personal; 
+    }
+
+    public setGrado(grado:Grado):void{
+        this.grado=grado;
+    }
+
+    public getGrado():Grado{
+        return this.grado;
     }
 }

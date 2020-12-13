@@ -5,7 +5,14 @@ import { MotivoService } from './motivo.service';
 
 @Controller('motivo')
 export class MotivoController {
-    public constructor(private readonly motivoService: MotivoService) { }
+    public constructor(private readonly motivoService: MotivoService,
+    private asistenciaService: AsistenciaService) { }
+
+    //Devuelve el objeto Motivo (idMotivo, Motivo)
+    @Get()
+    public getMotivos(): Promise<Motivo[]> {
+        return this.motivoService.getMotivos();
+    }
 
     //Devuelve el Motivo 
     @Get(":id")

@@ -2,15 +2,16 @@ let btnAgregar = document.querySelector("#agregarAsistencia");
 btnAgregar.addEventListener("click", agregarAsistencia);
 
 let listadoDePersonal = [];
+let listadoDeMotivos = [];
+let listadoDeGrados = [];
 
 async function loadList() {
     let container = document.querySelector("#use-ajax");
     try {
-        let response = await fetch('./reporte');
+        let response = await fetch('./consultas');
         if (response.ok) {
             let t = await response.json();
             listadoDePersonal = t; //reemplaza arreglo global listadoDePersonal por el que viene de la api 
-            mostrarTablaPersonal(); //muestro todo el personal almacenado en la base de datos
         }
         else {
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -18,26 +19,68 @@ async function loadList() {
     }
     catch (response) {
         container.innerHTML = "<h1>Connection error</h1>";
-    };
+    }
+    try {
+        let motivos = await fetch('./motivo');
+        if (motivos.ok) {
+            let m = await motivos.json();
+            litadoDeMotivos = m; //reemplaza arreglo global motivos por el que viene de la api 
+            mostrarTablaPersonal();
+        }
+        else {
+            container.innerHTML = "<h1>Error - Failed URL!</h1>";
+        }
+    }
+    catch (motivos) {
+        container.innerHTML = "<h1>Connection error</h1>";
+    }
+    try {
+        let grados = await fetch('./grado/getAll');
+        if (grados.ok) {
+            let g = await grados.json();
+            listadoDeGrados = g;  
+            cargarListaDeGrados();
+        }
+        else {
+            container.innerHTML = "<h1>Error - Failed URL!</h1>";
+        }
+    }
+    catch (grados) {
+        container.innerHTML = "<h1>Connection error</h1>";
+    }
+
+}
+
+
+function cargarListaDeGrados() {
+    let html = "";
+    for (let i = 0; i < listadoDeGrados.length; i++) {
+        html += `
+                <option type=”text” value="idGrado${i}">
+                ${listadoDeGrados[i].nombre}  
+                `;
+    }
+    document.querySelector("#addGrado").innerHTML = html;
 }
 
 function mostrarTablaPersonal() {
     html = "";
     for (let i = 0; i < listadoDePersonal.length; i++) {
+        //<td type=”number” id="numero${i}">${listadoDePersonal[i].antiguedad}</td>
         html += `
         <tr>
-            <td type=”number” id="numero${i}">${listadoDePersonal[i].antiguedad}</td>
-            <td type=”text” id="grado${i}">${listadoDePersonal[i].grado}</td>
+            <td type=”text” id="grado${i}">${listadoDePersonal[i].grado.nombre}</td>
             <td type=”text” id="nombre${i}">${listadoDePersonal[i].nombre}</td>
             <td type=”text” id="apellido${i}">${listadoDePersonal[i].apellido}</td>
             <td><input type="checkbox" name="asistencia" id="presente${i}"></td>
             <td><input type="checkbox" name="asistencia" id="ausente${i}"></td>
             <td>
                 <select id="causa${i}">
-                        <option value="autorizado">Autorizado</option>
-                        <option value="gusal">Guardia Saliente</option>
-                        <option value="gue">Guardia Entrante</option>
-                        <option value="fei">Fuerza Empleo Inmediato</option>
+                        <option value="autorizado">${litadoDeMotivos[0].motivo}</option>
+                        <option value="gusal">${litadoDeMotivos[1].motivo}</option>
+                        <option value="gue">${litadoDeMotivos[2].motivo}</option>
+                        <option value="fei">${litadoDeMotivos[3].motivo}</option>
+                        <option value="fei">${litadoDeMotivos[4].motivo}</option>
                 </select>
             </td>
         </tr>
@@ -54,40 +97,55 @@ async function agregarAsistencia() {
     let fecha = document.querySelector("#start").value;
     for (let i = 0; i < listadoDePersonal.length; i++) {
         let asistencia;
-        let causa;
+        let motivo;
+        let idMotivo;
         if (document.querySelector(`#presente${i}`).checked) {
             asistencia = "Presente";
-            causa = "Asistio";
+            motivo = litadoDeMotivos[0].motivo;
+            idMotivo = 1;
         } else {
             asistencia = "Ausente";
-            causa = (document.querySelector(`#causa${i}`).selectedIndex);
-            switch (causa) {
-                case 0: causa = "Autorizado";
+            motivo = (document.querySelector(`#causa${i}`).selectedIndex);
+            switch (motivo) {
+                case 1: motivo = litadoDeMotivos[1].motivo;
+                    idMotivo = 2;
                     break;
-                case 1: causa = "Guardia Saliente";
+                case 2: motivo = litadoDeMotivos[2].motivo;
+                    idMotivo = 3;
                     break;
-                case 2: causa = "Guardia Entrante";
+                case 3: motivo = litadoDeMotivos[3].motivo;
+                    idMotivo = 4;
                     break;
-                case 3: causa = "Fuerza Empleo Inmediato";
+                case 4: motivo = litadoDeMotivos[4].motivo;
+                    idMotivo = 5;
                     break;
             }
         }
         let antiguedad = listadoDePersonal[i].antiguedad;
-        let grado = listadoDePersonal[i].grado;
-        let nombre = listadoDePersonal[i].nombre;
         let apellido = listadoDePersonal[i].apellido;
+        let grado = listadoDePersonal[i].grado.nombre;
+        let idGrado = listadoDePersonal[i].grado.idGrado;
+        let idPers = listadoDePersonal[i].idPers;
+        let nombre = listadoDePersonal[i].nombre;
+        let activo = listadoDePersonal[i].activo;
+        let idUnidad = listadoDePersonal[i].idUnidad;
         let asist = {
-            "dia": fecha,
+            "idGrado": idGrado,
             "antiguedad": antiguedad,
+            "dia": fecha,
             "grado": grado,
             "nombre": nombre,
             "apellido": apellido,
-            "asistencia": asistencia,
-            "causa": causa
+            "motivo": motivo,
+            "activo": activo,
+            "idUnidad": idUnidad,
+            "idPers": idPers,
+            "idMotivo": idMotivo
         }
         arregloDeAsistencia.push(asist);
+
     }
-    let resp = await fetch('./reporte', {
+    let resp = await fetch('./asistencia/addAsistencia', {
         "method": "POST",
         "headers": { "Content-Type": "application/json" },
         "body": JSON.stringify(arregloDeAsistencia)
@@ -101,18 +159,20 @@ async function agregarAsistencia() {
 }
 
 async function agregarPersonal() {
-    let antiguedad = document.querySelector('#addNumero').value;
-    let grado = document.querySelector('#addGrado').value;
+   // let antiguedad = document.querySelector('#addNumero').value;
+    let grado = document.querySelector('#addGrado').value; //option.id;
     let apellido = document.querySelector('#addApellido').value;
     let nombre = document.querySelector('#addNombre').value;
 
     let addPers = {
-        "antiguedad": antiguedad,
+     //   "antiguedad": antiguedad,
         "grado": grado,
         "apellido": apellido,
         "nombre": nombre,
+        "idUnidad": 1,
+        "activo": true,
     }
-    let resp = await fetch('./reporte/1', {
+    let resp = await fetch('./personal', {
         "method": "POST",
         "headers": { "Content-Type": "application/json" },
         "body": JSON.stringify(addPers)
