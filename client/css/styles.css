@@ -291,6 +291,9 @@ td, th{
     margin-top: 15px;
 }
 
+.encabezadoConsulta {
+    font-weight: bold;
+}
 
 /*****************************Cambios para version mobile**********************************/
 
