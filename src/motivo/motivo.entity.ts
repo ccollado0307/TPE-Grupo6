@@ -28,4 +28,8 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
     public setMotivo(motivo: string){
         this.motivo = motivo;
     }
+
+    public setIdMotivo(idMotivo:number):void{
+        this.idMotivo=idMotivo;
+    }
 }

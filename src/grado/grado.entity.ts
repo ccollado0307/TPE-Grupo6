@@ -29,7 +29,11 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
         return this.nombre;
     }
 
-    public setNomre(nombre: string){
+    public setNombre(nombre: string){
         this.nombre = nombre;
+    }
+
+    public setIdGrado(idGrado:number):void{
+        this.idGrado=idGrado;
     }
 }

@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { GradoService } from 'src/grado/grado.service';
 import { MotivoService } from 'src/motivo/motivo.service';
 import { Asistencia } from './asistencia.entity';
@@ -14,4 +14,9 @@ export class AsistenciaController {
     public getAllFacturas(): Promise<Asistencia[]> {
         return this.asistenciaService.getAll();
     }
+
+    @Post("addAsistencia")
+    public addAsistencia(@Body() asist: any[]): Promise<string> {
+     return this.asistenciaService.addAsistencia(asist);
+ }
 }

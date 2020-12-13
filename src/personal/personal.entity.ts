@@ -94,4 +94,12 @@ export class Personal {
     public setActivo(activo: boolean): void {
         this.activo = activo;
     }
+
+    public getIdPers(): number {
+        return this.idPers;
+    }
+
+    public setIdPers(idPers:number):void{
+        this.idPers=idPers;
+    }
 }
