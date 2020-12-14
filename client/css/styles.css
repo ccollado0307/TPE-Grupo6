@@ -295,6 +295,9 @@ td, th{
     font-weight: bold;
 }
 
+.elemConsulta{
+    font-size: 18px;
+}
 /*****************************Cambios para version mobile**********************************/
 
 @media only screen and (max-width:600px){

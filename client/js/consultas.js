@@ -80,10 +80,6 @@ function tipoConsulta() {
 
 async function loadAllInformation(nroConsulta, fecha) {
     let idPers = document.querySelector("#option_listPers").value;
-    let btn_consulta = document.querySelector("#btn_cerrar");
-    
-    document.getElementById('btn_consulta').setAttribute('data-toggle', 'modal');
-    document.getElementById('btn_consulta').setAttribute('data-target', '#myModalCVacia');
     
     btn_consulta.addEventListener("click", volver);
 
@@ -106,9 +102,8 @@ async function loadAllInformation(nroConsulta, fecha) {
         if (listadoDeConsulta.length != 0) {
             formConsultas.classList.toggle("hide");
             cargarConsulta(nroConsulta);
-        /* } else {
-        
-            //alert('NO HAY CONSULTAS PARA MOSTRAR'); */
+        } else {
+            alert('NO HAY CONSULTAS PARA MOSTRAR'); 
         }
     } else {
         console.log("fallo el post");
@@ -119,7 +114,7 @@ function cargarConsulta(nroConsulta) {
     if (nroConsulta == 1) {
         let html = `<table class="tableConsulta">
                     <thead class="encabezadoConsulta">
-                        <tr>
+                        <tr class="elemConsulta">
                             <td> Grado Apellido y Nombre: 
                                 ${listadoDeConsulta[0].grado.nombre}
                                 ${listadoDeConsulta[0].personal.apellido} 
@@ -155,8 +150,8 @@ function cargarConsulta(nroConsulta) {
     }
     else if (nroConsulta == 2) {
         let html = `<table class="tableConsulta">
-                    <thead>
-                        <tr>
+                        <thead class="encabezadoConsulta">
+                        <tr class="elemConsulta">
                             <td> Fecha: 
                                 ${listadoDeConsulta[0].fecha.substring(0, 10)}
                             </td>
@@ -193,8 +188,8 @@ function cargarConsulta(nroConsulta) {
         botonVolver.addEventListener("click", volver);
     } else {
         let html = `<table class="tableConsulta">
-                        <thead>
-                            <tr>
+                        <thead class="encabezadoConsulta">
+                        <tr class="elemConsulta">
                                 <td> Fecha: 
                                     ${listadoDeConsulta[0].fecha.substring(0, 10)}
                                 </td>
