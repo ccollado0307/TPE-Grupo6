@@ -291,7 +291,13 @@ td, th{
     margin-top: 15px;
 }
 
+.encabezadoConsulta {
+    font-weight: bold;
+}
 
+.elemConsulta{
+    font-size: 18px;
+}
 /*****************************Cambios para version mobile**********************************/
 
 @media only screen and (max-width:600px){
