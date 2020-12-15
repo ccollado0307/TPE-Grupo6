@@ -75,7 +75,7 @@ function mostrarTablaPersonal() {
             <td><input type="checkbox" name="asistencia" id="presente${i}"></td>
             <td><input type="checkbox" name="asistencia" id="ausente${i}"></td>
             <td>
-                <select id="causa${i}">
+                <select id="causa${i}" class="motDesplegable">
                         <option value="autorizado">${litadoDeMotivos[0].motivo}</option>
                         <option value="gusal">${litadoDeMotivos[1].motivo}</option>
                         <option value="gue">${litadoDeMotivos[2].motivo}</option>
