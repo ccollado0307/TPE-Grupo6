@@ -11,7 +11,6 @@ async function loadList() {
         let response = await fetch('./consultas');
         if (response.ok) {
             let t = await response.json();
-            listadoDePersonal = [];
             listadoDePersonal = t; //reemplaza arreglo global listadoDePersonal por el que viene de la api 
         }
         else {
@@ -25,8 +24,8 @@ async function loadList() {
         let motivos = await fetch('./motivo');
         if (motivos.ok) {
             let m = await motivos.json();
-            listadoDeMotivos = m; //reemplaza arreglo global motivos por el que viene de la api 
-      //      mostrarTablaPersonal();
+            litadoDeMotivos = m; //reemplaza arreglo global motivos por el que viene de la api 
+            mostrarTablaPersonal();
         }
         else {
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -39,8 +38,8 @@ async function loadList() {
         let grados = await fetch('./grado/getAll');
         if (grados.ok) {
             let g = await grados.json();
-            listadoDeGrados = g;
-        //    cargarListaDeGrados();
+            listadoDeGrados = g;  
+            cargarListaDeGrados();
         }
         else {
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -50,8 +49,6 @@ async function loadList() {
         container.innerHTML = "<h1>Connection error</h1>";
     }
 
-    mostrarTablaPersonal();
-    cargarListaDeGrados();
 }
 
 
@@ -59,7 +56,7 @@ function cargarListaDeGrados() {
     let html = "";
     for (let i = 0; i < listadoDeGrados.length; i++) {
         html += `
-                <option type=”text” value="idGrado${i + 1}">
+                <option type=”text” value="idGrado${i+1}">
                 ${listadoDeGrados[i].nombre}  
                 `;
     }
@@ -67,8 +64,7 @@ function cargarListaDeGrados() {
 }
 
 function mostrarTablaPersonal() {
-
-    let html = "";
+     let html = "";
     for (let i = 0; i < listadoDePersonal.length; i++) {
         //<td type=”number” id="numero${i}">${listadoDePersonal[i].antiguedad}</td>
         html += `
@@ -80,11 +76,11 @@ function mostrarTablaPersonal() {
             <td><input type="checkbox" name="asistencia" id="ausente${i}"></td>
             <td>
                 <select id="causa${i}" class="motDesplegable">
-                        <option value="autorizado">${listadoDeMotivos[0].motivo}</option>
-                        <option value="gusal">${listadoDeMotivos[1].motivo}</option>
-                        <option value="gue">${listadoDeMotivos[2].motivo}</option>
-                        <option value="fei">${listadoDeMotivos[3].motivo}</option>
-                        <option value="fei">${listadoDeMotivos[4].motivo}</option>
+                        <option value="autorizado">${litadoDeMotivos[0].motivo}</option>
+                        <option value="gusal">${litadoDeMotivos[1].motivo}</option>
+                        <option value="gue">${litadoDeMotivos[2].motivo}</option>
+                        <option value="fei">${litadoDeMotivos[3].motivo}</option>
+                        <option value="fei">${litadoDeMotivos[4].motivo}</option>
                 </select>
             </td>
         </tr>
@@ -163,13 +159,13 @@ async function agregarAsistencia() {
 }
 
 async function agregarPersonal() {
-    // let antiguedad = document.querySelector('#addNumero').value;
+   // let antiguedad = document.querySelector('#addNumero').value;
     let grado = document.querySelector('#addGrado').value; //option.id;
     let apellido = document.querySelector('#addApellido').value;
     let nombre = document.querySelector('#addNombre').value;
 
     //   "antiguedad": antiguedad,
-
+    
     let addPers = {
         "grado": grado,
         "apellido": apellido,
@@ -183,27 +179,11 @@ async function agregarPersonal() {
         "body": JSON.stringify(addPers)
     })
     if (resp.ok) {
-      
-       // console.log("llegue al resp");
-        window.location.href = './reporte.html';
-        
-        //loadList();
-        /*  listadoDePersonal = [];
-        loadList();
-       // mostrarTablaPersonal();
-        */
+        let container = document.querySelector("#use-ajax");
+        container.innerHTML = "El Personal se ha registrado correctamente";
     } else {
         container.innerHTML = "Fallo el Post";
     }
-
-   
 }
-
-function volver() {
-    window.location.href = './reporte.html';
-}
-
-
-
 
 loadList();
