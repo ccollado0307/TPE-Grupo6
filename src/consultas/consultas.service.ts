@@ -72,6 +72,22 @@ export class ConsultasService {
                         });
                     return listadoConsulta5;
                     break;
+                case 6:
+                    const listadoConsulta6: Asistencia[] = await this.asistenciaRepository.find(
+                        {
+                            relations: ["grado", "motivo", "personal"],
+                             where: { fecha: parametros.fecha, "motivo": 5 }
+                        });
+                    return listadoConsulta6;
+                    break;
+                    case 7:
+                        const listadoConsulta7: Asistencia[] = await this.asistenciaRepository.find(
+                            {
+                                relations: ["grado", "motivo", "personal"],
+                                 where: { fecha: parametros.fecha, "motivo": 1 }
+                            });
+                        return listadoConsulta7;
+                        break;
             }
         } catch (error) {
             throw new HttpException({
