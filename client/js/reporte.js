@@ -10,9 +10,8 @@ async function loadList() {
     try {
         let response = await fetch('./consultas');
         if (response.ok) {
-            let t = await response.json();
-            listadoDePersonal = [];
-            listadoDePersonal = t; //reemplaza arreglo global listadoDePersonal por el que viene de la api 
+            listadoDePersonal = await response.json();
+            //reemplaza arreglo global listadoDePersonal por el que viene de la api 
         }
         else {
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -24,9 +23,9 @@ async function loadList() {
     try {
         let motivos = await fetch('./motivo');
         if (motivos.ok) {
-            let m = await motivos.json();
-            listadoDeMotivos = m; //reemplaza arreglo global motivos por el que viene de la api 
-      //      mostrarTablaPersonal();
+            listadoDeMotivos = await motivos.json();
+            //reemplaza arreglo global motivos por el que viene de la api 
+            //mostrarTablaPersonal();
         }
         else {
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -38,9 +37,8 @@ async function loadList() {
     try {
         let grados = await fetch('./grado/getAll');
         if (grados.ok) {
-            let g = await grados.json();
-            listadoDeGrados = g;
-        //    cargarListaDeGrados();
+            listadoDeGrados = await grados.json();
+            //cargarListaDeGrados();
         }
         else {
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -49,11 +47,9 @@ async function loadList() {
     catch (grados) {
         container.innerHTML = "<h1>Connection error</h1>";
     }
-
     mostrarTablaPersonal();
     cargarListaDeGrados();
 }
-
 
 function cargarListaDeGrados() {
     let html = "";
@@ -90,7 +86,6 @@ function mostrarTablaPersonal() {
         </tr>
            `;
     }
-
     document.querySelector("#tblPersonal").innerHTML = html;
     let btnAgregar = document.querySelector("#agregarPersonal");
     btnAgregar.addEventListener("click", agregarPersonal);
@@ -105,22 +100,22 @@ async function agregarAsistencia() {
         let idMotivo;
         if (document.querySelector(`#presente${i}`).checked) {
             asistencia = "Presente";
-            motivo = litadoDeMotivos[0].motivo;
+            motivo = listadoDeMotivos[0].motivo;
             idMotivo = 1;
         } else {
             asistencia = "Ausente";
             motivo = (document.querySelector(`#causa${i}`).selectedIndex);
             switch (motivo) {
-                case 1: motivo = litadoDeMotivos[1].motivo;
+                case 1: motivo = listadoDeMotivos[1].motivo;
                     idMotivo = 2;
                     break;
-                case 2: motivo = litadoDeMotivos[2].motivo;
+                case 2: motivo = listadoDeMotivos[2].motivo;
                     idMotivo = 3;
                     break;
-                case 3: motivo = litadoDeMotivos[3].motivo;
+                case 3: motivo = listadoDeMotivos[3].motivo;
                     idMotivo = 4;
                     break;
-                case 4: motivo = litadoDeMotivos[4].motivo;
+                case 4: motivo = listadoDeMotivos[4].motivo;
                     idMotivo = 5;
                     break;
             }
@@ -147,7 +142,7 @@ async function agregarAsistencia() {
             "idMotivo": idMotivo
         }
         arregloDeAsistencia.push(asist);
-
+      
     }
     let resp = await fetch('./asistencia/addAsistencia', {
         "method": "POST",
@@ -169,7 +164,6 @@ async function agregarPersonal() {
     let nombre = document.querySelector('#addNombre').value;
 
     //   "antiguedad": antiguedad,
-
     let addPers = {
         "grado": grado,
         "apellido": apellido,
@@ -183,27 +177,14 @@ async function agregarPersonal() {
         "body": JSON.stringify(addPers)
     })
     if (resp.ok) {
-      
-       // console.log("llegue al resp");
-        window.location.href = './reporte.html';
-        
-        //loadList();
-        /*  listadoDePersonal = [];
         loadList();
-       // mostrarTablaPersonal();
-        */
     } else {
         container.innerHTML = "Fallo el Post";
     }
-
-   
 }
 
 function volver() {
     window.location.href = './reporte.html';
 }
-
-
-
 
 loadList();
