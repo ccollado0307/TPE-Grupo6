@@ -64,7 +64,7 @@ function cargarListaDeGrados() {
 }
 
 function mostrarTablaPersonal() {
-    html = "";
+    let html = "";
     for (let i = 0; i < listadoDePersonal.length; i++) {
         //<td type=”number” id="numero${i}">${listadoDePersonal[i].antiguedad}</td>
         html += `

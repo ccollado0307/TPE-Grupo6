@@ -30,9 +30,6 @@ export class AsistenciaService {
 
     public async addAsistencia(asist: any): Promise<string> {
 
-        console.log(asist[1].dia);//controlo lo que llega
-        console.log(typeof (asist[1].dia)); //controlo el tipo de dato
-       
         let dia: string = asist[1].dia;
         
         //para buscar en la base de datos, se necesita el tipo Date
@@ -47,7 +44,6 @@ export class AsistenciaService {
             ]
         });
         if (checkeo.length > 0) {
-            console.log(checkeo.length);
             result = true;
         } else {
             result = false;
