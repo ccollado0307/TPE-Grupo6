@@ -86,7 +86,5 @@ export class AsistenciaService {
                 }, HttpStatus.NOT_FOUND);
             }
         }
-  
     }
-
 }

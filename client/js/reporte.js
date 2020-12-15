@@ -26,7 +26,6 @@ async function loadList() {
         if (motivos.ok) {
             let m = await motivos.json();
             listadoDeMotivos = m; //reemplaza arreglo global motivos por el que viene de la api 
-      //      mostrarTablaPersonal();
         }
         else {
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -40,7 +39,6 @@ async function loadList() {
         if (grados.ok) {
             let g = await grados.json();
             listadoDeGrados = g;
-        //    cargarListaDeGrados();
         }
         else {
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -53,7 +51,6 @@ async function loadList() {
     mostrarTablaPersonal();
     cargarListaDeGrados();
 }
-
 
 function cargarListaDeGrados() {
     let html = "";
@@ -70,7 +67,6 @@ function mostrarTablaPersonal() {
 
     let html = "";
     for (let i = 0; i < listadoDePersonal.length; i++) {
-        //<td type=”number” id="numero${i}">${listadoDePersonal[i].antiguedad}</td>
         html += `
         <tr>
             <td type=”text” id="grado${i}">${listadoDePersonal[i].grado.nombre}</td>
@@ -105,22 +101,22 @@ async function agregarAsistencia() {
         let idMotivo;
         if (document.querySelector(`#presente${i}`).checked) {
             asistencia = "Presente";
-            motivo = litadoDeMotivos[0].motivo;
+            motivo = listadoDeMotivos[0].motivo;
             idMotivo = 1;
         } else {
             asistencia = "Ausente";
             motivo = (document.querySelector(`#causa${i}`).selectedIndex);
             switch (motivo) {
-                case 1: motivo = litadoDeMotivos[1].motivo;
+                case 1: motivo = listadoDeMotivos[1].motivo;
                     idMotivo = 2;
                     break;
-                case 2: motivo = litadoDeMotivos[2].motivo;
+                case 2: motivo = listadoDeMotivos[2].motivo;
                     idMotivo = 3;
                     break;
-                case 3: motivo = litadoDeMotivos[3].motivo;
+                case 3: motivo = listadoDeMotivos[3].motivo;
                     idMotivo = 4;
                     break;
-                case 4: motivo = litadoDeMotivos[4].motivo;
+                case 4: motivo = listadoDeMotivos[4].motivo;
                     idMotivo = 5;
                     break;
             }
@@ -163,12 +159,9 @@ async function agregarAsistencia() {
 }
 
 async function agregarPersonal() {
-    // let antiguedad = document.querySelector('#addNumero').value;
     let grado = document.querySelector('#addGrado').value; //option.id;
     let apellido = document.querySelector('#addApellido').value;
     let nombre = document.querySelector('#addNombre').value;
-
-    //   "antiguedad": antiguedad,
 
     let addPers = {
         "grado": grado,
@@ -183,27 +176,14 @@ async function agregarPersonal() {
         "body": JSON.stringify(addPers)
     })
     if (resp.ok) {
-      
-       // console.log("llegue al resp");
-        window.location.href = './reporte.html';
-        
-        //loadList();
-        /*  listadoDePersonal = [];
-        loadList();
-       // mostrarTablaPersonal();
-        */
+      loadList();
     } else {
         container.innerHTML = "Fallo el Post";
     }
-
-   
 }
 
 function volver() {
     window.location.href = './reporte.html';
 }
-
-
-
 
 loadList();
