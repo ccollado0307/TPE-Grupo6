@@ -5,8 +5,7 @@ async function loadList() {
     try {
         let response = await fetch('./consultas');
         if (response.ok) {
-            let t = await response.json();
-            listadoDePersonal = t;
+            listadoDePersonal = await response.json();
             cargarPersonal(); //Muestro todo el personal almacenado en la BD
         }
         else {
@@ -44,8 +43,8 @@ let listadoDeConsulta = [];
 function tipoConsulta() {
     let manyCheckBox = document.querySelectorAll(".form-check-input");
     let fecha = document.querySelector("#input_calendario").value;
-
     let nroConsulta = 0;
+
     for (let i = 0; i < manyCheckBox.length; i++) {
         if (manyCheckBox[i].checked) {
             nroConsulta += i + 1;
@@ -53,42 +52,23 @@ function tipoConsulta() {
     }
 
     //No se indico ninguna consulta
-    let btn_consulta = document.querySelector("#btn_cerrar");
-
     if ((nroConsulta == 0) || ((nroConsulta > 1) && (fecha.length == 0))) {
-        document.getElementById('btn_consulta').setAttribute('data-toggle', 'modal');
-        document.getElementById('btn_consulta').setAttribute('data-target', '#myModal');
+        btn_consulta.setAttribute('data-toggle', 'modal');
+        btn_consulta.setAttribute('data-target', '#myModal');
     } else {
-        document.getElementById('btn_consulta').setAttribute('data-toggle', 'hide');
+        btn_consulta.setAttribute('data-toggle', 'hide');
     }
 
-    btn_consulta.addEventListener("click", volver);
-
-    switch (nroConsulta) {
-        case 1: loadAllInformation(1, fecha); //Una persona
-            break;
-        case 2: loadAllInformation(2, fecha); //Fecha
-            break;
-        case 3: loadAllInformation(3, fecha); //Gu Ent
-            break;
-        case 4: loadAllInformation(4, fecha); //Gu Sal
-            break;
-        case 5: loadAllInformation(5, fecha); //Autorizados
-            break;
-    }
+    loadAllInformation(nroConsulta, fecha);
 }
 
 async function loadAllInformation(nroConsulta, fecha) {
     let idPers = document.querySelector("#option_listPers").value;
-    
-    btn_consulta.addEventListener("click", volver);
-
     let parametros = {
         "nroConsulta": nroConsulta,
         "fecha": fecha,
         "idPers": parseInt(idPers)
     }
-
     let response = await fetch('./consultas',
         {
             "method": "POST",
@@ -96,14 +76,18 @@ async function loadAllInformation(nroConsulta, fecha) {
             "body": JSON.stringify(parametros)
         })
     if (response.ok) {
-        let t = await response.json();
-        listadoDeConsulta = t;
-
+        listadoDeConsulta = await response.json();
         if (listadoDeConsulta.length != 0) {
-            formConsultas.classList.toggle("hide");
+            formConsultas.classList.toggle("hide"); //oculto el panel de opciones de consulta
             cargarConsulta(nroConsulta);
         } else {
-            alert('NO HAY CONSULTAS PARA MOSTRAR'); 
+            let alert =
+                `<div class="alert alert-primary" role="alert"> No hay RESULTADOS para la CONSULTA especificada </div>
+                <button type="button" class="btn btn-primary btn-consultas" id="btn_modal">Volver</button>`;
+            //formConsultas.classList.toggle("hide");
+            formConsultas.innerHTML = alert;
+            let botonVolver = document.getElementById("btn_modal");
+            botonVolver.addEventListener("click", volver);
         }
     } else {
         console.log("fallo el post");

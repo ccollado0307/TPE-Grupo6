@@ -28,7 +28,7 @@ export class PersonalService {
     }
 
     public async registrarPersona(persona: any): Promise<string> {
-        console.log(persona);
+        //console.log(persona);
         try {
 
             const cantPersonal: Personal[] = await this.personalRepository.find();
