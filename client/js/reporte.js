@@ -24,8 +24,7 @@ async function loadList() {
         let motivos = await fetch('./motivo');
         if (motivos.ok) {
             let m = await motivos.json();
-            litadoDeMotivos = m; //reemplaza arreglo global motivos por el que viene de la api 
-            mostrarTablaPersonal();
+            listadoDeMotivos = m; //reemplaza arreglo global motivos por el que viene de la api 
         }
         else {
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -39,7 +38,6 @@ async function loadList() {
         if (grados.ok) {
             let g = await grados.json();
             listadoDeGrados = g;  
-            cargarListaDeGrados();
         }
         else {
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -48,7 +46,9 @@ async function loadList() {
     catch (grados) {
         container.innerHTML = "<h1>Connection error</h1>";
     }
-
+    mostrarTablaPersonal();
+    cargarListaDeGrados();
+    
 }
 
 
@@ -76,11 +76,11 @@ function mostrarTablaPersonal() {
             <td><input type="checkbox" name="asistencia" id="ausente${i}"></td>
             <td>
                 <select id="causa${i}" class="motDesplegable">
-                        <option value="autorizado">${litadoDeMotivos[0].motivo}</option>
-                        <option value="gusal">${litadoDeMotivos[1].motivo}</option>
-                        <option value="gue">${litadoDeMotivos[2].motivo}</option>
-                        <option value="fei">${litadoDeMotivos[3].motivo}</option>
-                        <option value="fei">${litadoDeMotivos[4].motivo}</option>
+                        <option value="autorizado">${listadoDeMotivos[0].motivo}</option>
+                        <option value="gusal">${listadoDeMotivos[1].motivo}</option>
+                        <option value="gue">${listadoDeMotivos[2].motivo}</option>
+                        <option value="fei">${listadoDeMotivos[3].motivo}</option>
+                        <option value="fei">${listadoDeMotivos[4].motivo}</option>
                 </select>
             </td>
         </tr>
@@ -101,22 +101,22 @@ async function agregarAsistencia() {
         let idMotivo;
         if (document.querySelector(`#presente${i}`).checked) {
             asistencia = "Presente";
-            motivo = litadoDeMotivos[0].motivo;
+            motivo = listadoDeMotivos[0].motivo;
             idMotivo = 1;
         } else {
             asistencia = "Ausente";
             motivo = (document.querySelector(`#causa${i}`).selectedIndex);
             switch (motivo) {
-                case 1: motivo = litadoDeMotivos[1].motivo;
+                case 1: motivo = listadoDeMotivos[1].motivo;
                     idMotivo = 2;
                     break;
-                case 2: motivo = litadoDeMotivos[2].motivo;
+                case 2: motivo = listadoDeMotivos[2].motivo;
                     idMotivo = 3;
                     break;
-                case 3: motivo = litadoDeMotivos[3].motivo;
+                case 3: motivo = listadoDeMotivos[3].motivo;
                     idMotivo = 4;
                     break;
-                case 4: motivo = litadoDeMotivos[4].motivo;
+                case 4: motivo = listadoDeMotivos[4].motivo;
                     idMotivo = 5;
                     break;
             }
@@ -179,8 +179,7 @@ async function agregarPersonal() {
         "body": JSON.stringify(addPers)
     })
     if (resp.ok) {
-        let container = document.querySelector("#use-ajax");
-        container.innerHTML = "El Personal se ha registrado correctamente";
+        loadList();
     } else {
         container.innerHTML = "Fallo el Post";
     }
