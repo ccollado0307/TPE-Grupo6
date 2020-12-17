@@ -3,7 +3,6 @@ btnAgregar.addEventListener("click", agregarAsistencia);
 
 let listadoDePersonal = [];
 let listadoDeMotivos = [];
-let listadoDeGrados = [];
 
 async function loadList() {
     let container = document.querySelector("#use-ajax");
@@ -31,19 +30,6 @@ async function loadList() {
         }
     }
     catch (motivos) {
-        container.innerHTML = "<h1>Connection error</h1>";
-    }
-    try {
-        let grados = await fetch('./grado/getAll');
-        if (grados.ok) {
-            let g = await grados.json();
-            listadoDeGrados = g;  
-        }
-        else {
-            container.innerHTML = "<h1>Error - Failed URL!</h1>";
-        }
-    }
-    catch (grados) {
         container.innerHTML = "<h1>Connection error</h1>";
     }
     mostrarTablaPersonal();
@@ -86,10 +72,7 @@ function mostrarTablaPersonal() {
         </tr>
            `;
     }
-
     document.querySelector("#tblPersonal").innerHTML = html;
-    let btnAgregar = document.querySelector("#agregarPersonal");
-    btnAgregar.addEventListener("click", agregarPersonal);
 }
 
 async function agregarAsistencia() {
@@ -158,31 +141,6 @@ async function agregarAsistencia() {
     }
 }
 
-async function agregarPersonal() {
-   // let antiguedad = document.querySelector('#addNumero').value;
-    let grado = document.querySelector('#addGrado').value; //option.id;
-    let apellido = document.querySelector('#addApellido').value;
-    let nombre = document.querySelector('#addNombre').value;
 
-    //   "antiguedad": antiguedad,
-    
-    let addPers = {
-        "grado": grado,
-        "apellido": apellido,
-        "nombre": nombre,
-        "idUnidad": 1,
-        "activo": true,
-    }
-    let resp = await fetch('./personal', {
-        "method": "POST",
-        "headers": { "Content-Type": "application/json" },
-        "body": JSON.stringify(addPers)
-    })
-    if (resp.ok) {
-        loadList();
-    } else {
-        container.innerHTML = "Fallo el Post";
-    }
-}
 
 loadList();
