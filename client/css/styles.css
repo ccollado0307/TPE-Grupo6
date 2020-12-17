@@ -226,6 +226,11 @@ td, th{
     justify-content: space-between;
 }
 
+.tituloAltaPers{
+    margin-left: 100px;
+    margin-bottom: 25px;
+}
+
 #addNumero{
     width: 10%;
 }
