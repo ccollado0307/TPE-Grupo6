@@ -60,4 +60,14 @@ export class PersonalService {
         }
 
     }
+    public async deletePersonal(idPers: number): Promise<boolean> {
+        const pers: Personal = await this.personalRepository.findOne(idPers);
+        if (!pers) {
+            throw new HttpException('el personal no existe!', 404);
+        } else {
+            await this.asistenciaRepository.query("delete from asistencia where idPers =" + idPers);
+            await this.personalRepository.delete(idPers);
+            return true;
+        }
+    }
 }
