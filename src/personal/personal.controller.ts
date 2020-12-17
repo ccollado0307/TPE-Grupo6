@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { AsistenciaService } from 'src/asistencia/asistencia.service';
 import { GradoService } from 'src/grado/grado.service';
 import { UnidadService } from 'src/unidad/unidad.service';
@@ -21,5 +21,9 @@ export class PersonalController {
     @Post()
     public addPersonal(@Body() persona: any): Promise<string> {
         return this.personalService.registrarPersona(persona);
+    }
+    @Delete(':index')
+    public deletePersonal(@Param('index') index): Promise<boolean> {
+        return this.personalService.deletePersonal(parseInt(index));
     }
 }
