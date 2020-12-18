@@ -5,7 +5,7 @@ async function loadList() {
         let response = await fetch('./consultas');
         if (response.ok) {
             let t = await response.json();
-            listadoDePersonal = t; //reemplaza arreglo global listadoDePersonal por el que viene de la api 
+            listadoDePersonal = t;
         }
         else {
             container.innerHTML = "<h1>Error - Failed URL!</h1>";
@@ -19,16 +19,37 @@ async function loadList() {
 function mostrarTablaPersonal() {
     let html = "";
     for (let i = 0; i < listadoDePersonal.length; i++) {
-        //<td type=”number” id="numero${i}">${listadoDePersonal[i].antiguedad}</td>
         html += `
-       <tr>
-           <td><input type=”text” class="motDesplegable" id="grado${i}" value=${listadoDePersonal[i].grado.nombre}></td>
+        <tr>
+        <td>
+        <select id="modifGrado${i}"  class="motDesplegable">
+                     <option type="text" value="1">TC</option>
+                     <option type="text" value="2">MY</option>
+                     <option type="text" value="3">CT</option>
+                     <option type="text" value="4">TI</option>
+                     <option type="text" value="5">TT</option>
+                     <option type="text" value="6">ST</option>
+                     <option type="text" value="7">SM</option>
+                     <option type="text" value="8">SP</option>
+                     <option type="text" value="9">SA</option>
+                     <option type="text" value="10">SI</option>
+                     <option type="text" value="11">SG</option>
+                     <option type="text" value="12">CI</option>
+                     <option type="text" value="13">CB</option>
+                     <option type="text" value="14">CB Art 11</option>
+                     <option type="text" value="15">VP</option>
+                     <option type="text" value="16">VS</option>
+                     <option type="text" value="17">VS "EC"</option>       
+         </select>
+        </td>
+        <td type=”text” class="motDesplegable" id="grado${i}">${listadoDePersonal[i].grado.nombre}</td>
            <td><input type=”text” class="motDesplegable" id="nombre${i}" value=${listadoDePersonal[i].nombre}></td>
-           <td><input type=”text” class="motDesplegable" id="apellido${i}" value=${listadoDePersonal[i].apellido}></td>
-           <td><button id="actualizarPersonal" class="btn btn-primary btn-enviar" pos=${listadoDePersonal[i].idPers}>Actualizar</button></td>
-           <td><button id="borrarPersonal"  class="btn btn-primary btn-enviar" pos=${listadoDePersonal[i].idPers}>Borrar</button></td>
-           </tr>
-           `;
+           <td><input type=”text” class="motDesplegable" id="apellido${i}" posit=${i} value=${listadoDePersonal[i].apellido}></td>
+           <td><button id="actualizarPersonal" class="btn btn-primary btn-enviar" posit=${i} pos=${listadoDePersonal[i].idPers}>Actualizar</button></td>
+           <td><button id="borrarPersonal"  class="btn btn-primary btn-enviar"  
+           pos=${listadoDePersonal[i].idPers}>Borrar</button></td>
+           </tr >
+        `;
     }
     document.querySelector("#tblPersonal").innerHTML = html;
     addButtonBehavior("#borrarPersonal", btnBorrarClick);
@@ -41,8 +62,11 @@ function addButtonBehavior(btnId, fn) {
     });
 }
 async function btnBorrarClick() {
+    console.log("llegue")
     let idPers = this.getAttribute("pos");
-    let response = await fetch(`./personal/` + idPers, {
+    console.log(idPers);
+    //let idPers = this.getAttribute("posit");
+    let response = await fetch(`./personal/ ` + idPers, {
         "method": "DELETE",
         "headers": {
             "Content-Type": "application/json"
@@ -51,13 +75,13 @@ async function btnBorrarClick() {
     )
     recargar();
 }
-function recargarPagina(){
+function recargarPagina() {
     loadList();
 }
-function recargar(){
-   console.log("entre a recargar")
+function recargar() {
+    console.log("entre a recargar")
     let contador = 15;
-    while(contador!=0){
+    while (contador != 0) {
         console.log("entre al while");
         contador--;
         console.log(contador);
@@ -65,13 +89,20 @@ function recargar(){
     recargarPagina();
 }
 async function btnActualizarClick() {
-    let pos = this.getAttribute("pos");
+    let idPers = this.getAttribute("pos");
+    let posit = this.getAttribute("posit");
+    let grado = document.getElementById(`modifGrado${posit}`);
+    let idGrado = grado.options[grado.selectedIndex].value;
+    let nombre = document.querySelector(`#nombre${posit} `).value;
+    let apellido = document.querySelector(`#apellido${posit} `).value;
+    console.log(idGrado);
     let pers = {
-        "grado": document.querySelector(`grado${pos}`).value,
-        "nombre": document.querySelector(`#nombre${pos}`).value,
-        "apellido": document.querySelector(`#apellido${pos}`).value,
+        "idGrado": idGrado,
+        "nombre": nombre,
+        "apellido": apellido,
+        "idPers": idPers
     }
-    let response = await fetch('./personal/' + pos, {
+    let response = await fetch('./personal/' + idPers, {
         "method": "PUT",
         "headers": { "Content-Type": "application/json" },
         "body": JSON.stringify(pers)
@@ -79,8 +110,3 @@ async function btnActualizarClick() {
     loadList();
 }
 loadList();
-
-
-
-
-

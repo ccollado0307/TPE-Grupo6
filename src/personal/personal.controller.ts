@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { AsistenciaService } from 'src/asistencia/asistencia.service';
 import { GradoService } from 'src/grado/grado.service';
 import { UnidadService } from 'src/unidad/unidad.service';
@@ -25,5 +25,9 @@ export class PersonalController {
     @Delete(':index')
     public deletePersonal(@Param('index') index): Promise<boolean> {
         return this.personalService.deletePersonal(parseInt(index));
+    }
+    @Put(':index')  
+    public updatePersonal(@Body() personal: any): Promise<boolean> {
+        return this.personalService.updatePersonal(personal);
     }
 }

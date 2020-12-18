@@ -70,4 +70,24 @@ export class PersonalService {
             return true;
         }
     }
+    public async updatePersonal( personal: any):Promise<boolean> {
+        console.log("llegue al service");
+        console.log(personal);
+         const pers: Personal = await this.personalRepository.findOne(personal.idPers);
+         if (!pers){
+             throw new HttpException('el personal no existe!', 404);
+         } else {
+             let nombre = (personal.nombre).toUpperCase(); 
+             let apellido=(personal.apellido).toUpperCase();
+             let nroG = (personal.idGrado);
+             nroG = parseInt(nroG);
+             pers.setActivo(true);
+             pers.setNombre(nombre); 
+             pers.setApellido(apellido);
+             pers.setIdGrado(nroG);
+             pers.setIdUnidad(1);
+             await this.personalRepository.update(personal.idPers,pers);
+             return true;
+         }
+     }
 }
