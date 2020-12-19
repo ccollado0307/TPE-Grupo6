@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { check } from 'prettier';
 import { Grado } from 'src/grado/grado.entity';
 import { Motivo } from 'src/motivo/motivo.entity';
 import { Personal } from 'src/personal/personal.entity';
@@ -29,7 +28,6 @@ export class AsistenciaService {
     }
 
     public async addAsistencia(asist: any): Promise<string> {
-
         let dia: string = asist[1].dia;
         
         //para buscar en la base de datos, se necesita el tipo Date
@@ -50,7 +48,6 @@ export class AsistenciaService {
         }
 
         if (!result) {
-
             try {
                 for (let i = 0; i < asist.length; i++) {
                     //construyo un grado
@@ -86,7 +83,5 @@ export class AsistenciaService {
                 }, HttpStatus.NOT_FOUND);
             }
         }
-  
     }
-
 }

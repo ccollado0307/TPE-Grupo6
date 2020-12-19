@@ -28,8 +28,6 @@ async function checkear() {
             formularioLogin.innerHTML = alert;
             let botonVolver = document.getElementById("btn_modal");
             botonVolver.addEventListener("click", volver);
-        /* document.getElementById('btn_login').setAttribute('data-toggle', 'modal');
-        document.getElementById('btn_login').setAttribute('data-target', '#myModal'); */
     }
 }
 

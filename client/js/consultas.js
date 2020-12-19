@@ -84,7 +84,6 @@ async function loadAllInformation(nroConsulta, fecha) {
             let alert =
                 `<div class="alert alert-primary" role="alert"> No hay RESULTADOS para la CONSULTA especificada </div>
                 <button type="button" class="btn btn-primary btn-consultas" id="btn_modal">Volver</button>`;
-            //formConsultas.classList.toggle("hide");
             formConsultas.innerHTML = alert;
             let botonVolver = document.getElementById("btn_modal");
             botonVolver.addEventListener("click", volver);

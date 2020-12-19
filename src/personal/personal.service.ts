@@ -43,7 +43,6 @@ export class PersonalService {
             nroGrado = parseInt(nroGrado);
             personal.setIdGrado(nroGrado);
 
-            //let antiguedad = parseInt(persona.antiguedad);
             personal.setAntiguedad(dimensionPersonal);
 
             personal.setIdUnidad(persona.idUnidad);
@@ -71,8 +70,6 @@ export class PersonalService {
         }
     }
     public async updatePersonal( personal: any):Promise<boolean> {
-        console.log("llegue al service");
-        console.log(personal);
          const pers: Personal = await this.personalRepository.findOne(personal.idPers);
          if (!pers){
              throw new HttpException('el personal no existe!', 404);

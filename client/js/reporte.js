@@ -141,6 +141,4 @@ async function agregarAsistencia() {
     }
 }
 
-
-
 loadList();

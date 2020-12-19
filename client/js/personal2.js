@@ -55,17 +55,16 @@ function mostrarTablaPersonal() {
     addButtonBehavior("#borrarPersonal", btnBorrarClick);
     addButtonBehavior("#actualizarPersonal", btnActualizarClick);
 }
+
 function addButtonBehavior(btnId, fn) {
     let botones = document.querySelectorAll(btnId);
     botones.forEach(boton => {
         boton.addEventListener("click", fn);
     });
 }
+
 async function btnBorrarClick() {
-    console.log("llegue")
     let idPers = this.getAttribute("pos");
-    console.log(idPers);
-    //let idPers = this.getAttribute("posit");
     let response = await fetch(`./personal/ ` + idPers, {
         "method": "DELETE",
         "headers": {
@@ -75,16 +74,15 @@ async function btnBorrarClick() {
     )
     recargar();
 }
+
 function recargarPagina() {
     loadList();
 }
+
 function recargar() {
-    console.log("entre a recargar")
     let contador = 15;
     while (contador != 0) {
-        console.log("entre al while");
         contador--;
-        console.log(contador);
     }
     recargarPagina();
 }
@@ -95,7 +93,6 @@ async function btnActualizarClick() {
     let idGrado = grado.options[grado.selectedIndex].value;
     let nombre = document.querySelector(`#nombre${posit} `).value;
     let apellido = document.querySelector(`#apellido${posit} `).value;
-    console.log(idGrado);
     let pers = {
         "idGrado": idGrado,
         "nombre": nombre,
